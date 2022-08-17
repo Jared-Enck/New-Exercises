@@ -1,0 +1,12 @@
+1. What is the difference between var and let?
+    var hoists, it's scope is in entire function, can be redeclared
+    let scope is to the code block and cannot be redeclared, but can be reassigned
+
+2. What is the difference between var and const?
+    see above. then see below for diff between let/const...
+
+3. What is the difference between let and const?
+    let can be reassigned, const cannot
+
+4. What is hoisting?
+    var is "hoisted" to the top of running code and declared before initialization
