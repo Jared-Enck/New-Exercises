@@ -1,0 +1,25 @@
+.movie-form {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 10px 20vw 10px 20vw;
+}
+
+h1{
+    text-align: center;
+}
+
+.movie-container{
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: 10px 30vw 10px 30vw;
+    height: 500px;
+}
+
+.clear{
+    position: absolute;
+    margin: auto;
+    bottom: 5%;
+}
