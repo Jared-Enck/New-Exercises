@@ -1,0 +1,43 @@
+Part One: Solidify Terminology
+
+**What is HTTP?
+
+Hyper Text Transfer Protocol determines how websites send or receive data.
+
+**What is a URL?
+
+an address for a resource on the internet.
+
+**What is DNS?
+
+a system that converts URLs into IP addresses.
+
+**What is a query string?
+
+put key value pairs in a URL to search for something
+
+**List two HTTP Verbs and their use cases.
+
+GET - retrieve data from a server.
+POST - send data to a server, that will have lasting effect.
+
+**What is an HTTP request?
+
+a request from a site to the server
+
+**What is an HTTP response?
+
+response from the server to a site
+
+**What is an HTTP header? Give a couple examples of request and response headers you have seen.
+
+Request headers: Accept, Host, Date, Cookie
+Response headers: Set-Cookie, Cache-Control, Content-Type, Last-Modified
+
+**What happens when you type a URL in a browser?
+
+The browser uses DNS to take the URL and get the IP address.
+The browser sends a request to the server
+The server sends a response 
+The browser builds a DOM from the HTML received, along with any other resource data needed
+The browser will repeat the HTTP send receive request for each of the other resources
