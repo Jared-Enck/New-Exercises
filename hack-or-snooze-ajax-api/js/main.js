@@ -9,19 +9,16 @@
 const $body = $("body");
 
 const $storiesLoadingMsg = $("#stories-loading-msg");
-const $allStoriesList = $("#all-stories-list");
-const $favoritedStories = $("#favorited-stories");
-const $ownStories = $("#my-stories");
-
-const $storiesLists = $(".stories-list");
-
 const $loginForm = $("#login-form");
 const $signupForm = $("#signup-form");
-
-const $navLogin = $("#nav-login");
-const $navUserProfile = $("#nav-user-profile");
-const $navLogOut = $("#nav-logout");
 const $storyForm = $("#story-form");
+const $allStoriesList = $("#all-stories-list");
+const $storiesLists = $(".stories-list");
+const $favoritedStories = $("#favorited-stories");
+const $ownStories = $("#my-stories");
+const $navUserProfile = $("#nav-user-profile");
+const $navLogin = $("#nav-login");
+const $navLogOut = $("#nav-logout");
 const $navSubmit = $("#nav-submit");
 const $navFavs = $("#nav-favs");
 const $navMyStories = $("#nav-my-stories");

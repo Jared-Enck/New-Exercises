@@ -88,12 +88,11 @@ $ownStories.on("click", ".trash-can", deleteStory);
   const $author = $("#story-author").val();
   const $title = $("#story-title").val();
   const $url = $("#story-url").val();
-  const story = await storyList.addStory(currentUser, {
-    $title,
-    $author,
-    $url,
-  });
+  const username = currentUser.username
+  const $storyData = { $title, $author, $url, username}
+  const story = await storyList.addStory(currentUser, $storyData);
   const $story = generateStoryMarkup(story);
+  console.log($story)
   $allStoriesList.prepend($story);
   $storyForm.slideUp("slow");
   $storyForm.trigger("reset");
