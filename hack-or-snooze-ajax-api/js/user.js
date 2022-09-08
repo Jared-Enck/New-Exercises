@@ -20,8 +20,10 @@ async function login(evt) {
   // User.login retrieves user info from API and returns User instance
   // which we'll make the globally-available, logged-in user.
   currentUser = await User.login(username, password);
-
+  $loginForm.hide();
   $loginForm.trigger("reset");
+  $signupForm.hide();
+  $loggedInNavOptions.show();
 
   saveUserCredentialsInLocalStorage();
   updateUIOnUserLogin();
@@ -45,7 +47,7 @@ async function signup(evt) {
 
   saveUserCredentialsInLocalStorage();
   updateUIOnUserLogin();
-
+  $signupForm.hide();
   $signupForm.trigger("reset");
 }
 
@@ -107,9 +109,10 @@ function saveUserCredentialsInLocalStorage() {
  * - generate the user profile part of the page
  */
 
-function updateUIOnUserLogin() {
+async function updateUIOnUserLogin() {
   console.debug("updateUIOnUserLogin");
-
+  hidePageComponents();
+  putStoriesOnPage();
   $allStoriesList.show();
 
   updateNavOnLogin();
