@@ -90,7 +90,7 @@ class StoryList {
     await axios({
       url: `${BASE_URL}/stories/${storyId}`,
       method: "DELETE",
-      data: { token: user.loginToken },
+      data: { token: token },
     });
 
     this.stories = this.stories.filter((story) => story.storyId !== storyId);

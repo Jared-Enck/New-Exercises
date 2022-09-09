@@ -85,11 +85,11 @@ $ownStories.on("click", ".trash-can", deleteStory);
  async function submitStory(evt) {
   console.debug("submitStory");
   evt.preventDefault();
-  const $author = $("#story-author").val();
-  const $title = $("#story-title").val();
-  const $url = $("#story-url").val();
+  const author = $("#story-author").val();
+  const title = $("#story-title").val();
+  const url = $("#story-url").val();
   const username = currentUser.username
-  const $storyData = { $title, $author, $url, username}
+  const $storyData = { title, author, url, username}
   const story = await storyList.addStory(currentUser, $storyData);
   const $story = generateStoryMarkup(story);
   console.log($story)
