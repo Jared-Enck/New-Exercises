@@ -16,6 +16,21 @@ def convert_temp(unit_in, unit_out, temp):
     """
 
     # YOUR CODE HERE
+    f_to_c_conversion = (temp - 32) * .5556
+    c_to_f_conversion = temp * 1.8 + 32
+
+    if unit_in == unit_out:
+        return temp
+    if unit_in == "z" or unit_out == "z":
+        return "Invalid unit z"
+    if unit_in == "c":
+        if unit_in != unit_out and unit_in != 'z':
+            temp = c_to_f_conversion
+            return temp
+    if unit_in == "f":
+        if unit_in != unit_out and unit_in != 'z':
+            temp = f_to_c_conversion
+            return temp
 
 
 print("c", "f", 0, convert_temp("c", "f", 0), "should be 32.0")
