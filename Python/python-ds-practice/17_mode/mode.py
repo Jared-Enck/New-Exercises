@@ -11,3 +11,13 @@ def mode(nums):
         >>> mode([2, 2, 3, 3, 2])
         2
     """
+    count = {}
+
+    for n in nums:
+        count[n] = count.get(n, 0) + 1
+    
+    highest_count = max(count.values())
+
+    for (n, freq) in count.items():
+        if freq == highest_count:
+            return n

@@ -18,3 +18,5 @@ def repeat(phrase, num):
         >>> repeat('abc', 'nope') is None
         True
     """
+    
+    return None if not isinstance(num, int) or num < 0 else phrase * num
