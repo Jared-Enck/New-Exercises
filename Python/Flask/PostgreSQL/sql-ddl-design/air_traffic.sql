@@ -10,20 +10,20 @@ CREATE DATABASE air_traffic;
 CREATE TABLE countries
 (
   id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
+  name TEXT NOT NULL
 );
 
 CREATE TABLE cities
 (
-  id SERIAL PRIMARY KEY
-  name TEXT NOT NULL,
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL
 );
 
 CREATE TABLE airlines
 (
-  id SERIAL PRIMARY KEY
+  id SERIAL PRIMARY KEY,
   name TEXT NOT NULL,
-  rating FLOAT NOT NULL,
+  rating FLOAT NOT NULL
 );
 
 CREATE TABLE tickets
@@ -100,4 +100,4 @@ VALUES
   ('Berkie', 'Wycliff', '9E', '2019-02-06 06:00:00', '2019-02-06 07:47:00', '1', '12', '1', '13', '1'),
   ('Alvin', 'Leathes', '1A', '2018-12-22 14:42:00', '2018-12-22 15:56:00', '6', '14', '1', '15', '1'),
   ('Berkie', 'Wycliff', '32B', '2019-02-06 16:28:00', '2019-02-06 19:18:00', '6', '13', '1', '16', '1'),
-  ('Cory', 'Squibbes', '10D', '2019-01-20 19:30:00', '2019-01-20 22:45:00', '7', '17', '9', '18', '');
+  ('Cory', 'Squibbes', '10D', '2019-01-20 19:30:00', '2019-01-20 22:45:00', '7', '17', '9', '18', '10');
