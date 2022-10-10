@@ -5,7 +5,7 @@ from models import db, connect_db
 app = Flask(__name__)
 debug = True
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///movies_example'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///pet_shop_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']= False
 app.config['SQLALCHEMY_ECHO']= True
 app.config['SECRET_KEY'] = 'chickensrdumb4242'
