@@ -3,8 +3,7 @@ from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db
 
 app = Flask(__name__)
-if __name__ == "__main__":
-    app.run(debug=True)
+debug = True
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///movies_example'
 app.config['SECRET_KEY'] = 'chickensrdumb4242'
