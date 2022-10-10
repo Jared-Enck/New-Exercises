@@ -24,3 +24,11 @@ class Pet(db.Model):
     species = db.Column(db.String(30), nullable=True)
 
     hunger = db.Column(db.Integer, nullable=False, default=20)
+    
+    def greet(self):
+        return f'Hi, I am {self.name} the {self.species}'
+    
+    def feed(self, amt=20):
+        """Update hunger based off of amt"""
+        self.hunger -= amt
+        self.hunger = max(self.hunger, 0)
