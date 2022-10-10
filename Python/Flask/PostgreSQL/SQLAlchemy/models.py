@@ -7,3 +7,4 @@ def connect_db(app):
     db.init_app(app)
     
 #  MODELS GO BELOW
+
