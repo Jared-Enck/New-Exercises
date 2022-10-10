@@ -1,18 +1,15 @@
 from flask import Flask, request, render_template, redirect, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
-from flask_sqlalchemy import SQLAlchemy
+from models import db, connect_db
 
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///movies_example'
-
-db = SQLAlchemy()
-db.app = app
-db.init_app(app)
-
 app.config['SECRET_KEY'] = 'chickensrdumb4242'
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
-debug = DebugToolbarExtension(app)
+toolbar = DebugToolbarExtension(app)
+
+connect_db(app)
 
 @app.route('/')
 def home_page():
