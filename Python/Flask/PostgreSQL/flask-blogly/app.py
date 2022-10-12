@@ -49,3 +49,11 @@ def process_add_user_form():
     db.session.commit()
     
     return redirect('/users')
+
+@app.route('/users/<int:user_id>')
+def info_page(user_id):
+    """Shows user info"""
+    
+    user = User.query.get_or_404(user_id)
+    
+    return render_template('info.html', user=user)
