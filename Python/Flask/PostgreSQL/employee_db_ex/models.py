@@ -17,6 +17,8 @@ class Department(db.Model):
     dept_name = db.Column(db.Text, nullable=False, unique=True)
     phone = db.Column(db.Text)
     
+    employees = db.relationship('Employee')
+    
 class Employee(db.Model):
     """Employee Model"""
     
@@ -26,3 +28,5 @@ class Employee(db.Model):
     name = db.Column(db.Text, nullable=False)
     state = db.Column(db.Text, nullable=False, default='CA')
     dept_code = db.Column(db.Text, db.ForeignKey('departments.dept_code'))
+    
+    dept = db.relationship('Department')
