@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin: 0;
+    padding: 10px;
+}
+
+.profile-container {
+    width: 170px;
+    height: 200px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.a-button {
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    background-color: rgb(238, 238, 238);
+    color: black;
+    margin: 0em;
+    padding: 1px 6px;
+    border-width: 1px;
+    border-style: solid;
+    border-image: initial;
+    border-radius: 2.5px;
+}
+
+.a-button:hover {
+    background-color: rgb(216, 216, 216);
+}
+
+button {
+    cursor: pointer;
+}
