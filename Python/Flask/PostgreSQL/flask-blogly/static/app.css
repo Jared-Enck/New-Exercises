@@ -11,8 +11,6 @@ h1 {
 img {
     width: 170px;
     height: 200px;
-    background-size: contain;
-    background-repeat: no-repeat;
 }
 
 button {
