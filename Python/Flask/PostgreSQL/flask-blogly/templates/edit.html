@@ -4,13 +4,13 @@
 
 {%block content%}
 <h1>Edit User</h1>
-    <form action="/users/{{user.id}}" method="POST">
+    <form method="POST">
         <label for="first_name">First Name</label>
         <input type="text" name="first_name" value="{{user.first_name}}">
         <label for="last_name">Last Name</label>
         <input type="text" name="last_name" value="{{user.last_name}}">
         <label for="image_url">Image URL</label>
         <input type="url" name="image_url" value="{{user.image_url}}">
-        <a href="/users/{{user.id}}" class="a-button">Cancel</a><button type="submit">Save</button>
+        <button formaction="/users/{{user.id}}" formmethod="GET">Cancel</button><button type="submit">Save</button>
     </form>
 {%endblock%}

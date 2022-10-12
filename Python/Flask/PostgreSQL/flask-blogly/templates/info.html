@@ -4,12 +4,15 @@
 
 {%block content%}
 <h1>{{user.first_name}} {{user.last_name}}</h1>
-<div class="profile-container" style="background-image: url('{{user.image_url}}');">
+<div>
+    <img src="{{user.image_url}}" alt="{{user.first_name}}">
 </div>
 
 <div>
-    <a href="/users/{{user.id}}/edit" class="a-button">Edit</a>
-    <a href="/users/{{user.id}}/delete" class="a-button">Delete</a>
+    <form>
+    <button formaction="/users/{{user.id}}/edit" formmethod="GET">Edit</button>
+    <button formaction="/users/{{user.id}}/delete" formmethod="POST">Delete</button>
+    </form>
 </div>
 
 {%endblock%}
