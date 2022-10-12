@@ -73,15 +73,22 @@ def process_edit_form(user_id):
     
     u = User.query.get_or_404(user_id)
 
-    first_name = request.form['first_name']
-    last_name = request.form['last_name']
-    image_url = request.form['image_url']
-    
-    u.first_name = first_name
-    u.last_name = last_name
-    u.image_url = image_url
+    u.first_name = request.form['first_name']
+    u.last_name = request.form['last_name']
+    u.image_url = request.form['image_url']
     
     db.session.add(u)
     db.session.commit()
     
+    return redirect('/users')
+
+@app.route('/users/<int:user_id>/delete', methods=['POST'])
+def remove_user(user_id):
+    """Delete user from db"""
+    
+    u = User.query.get_or_404(user_id)
+    
+    db.session.delete(u)
+    db.session.commit()
+
     return redirect('/users')
