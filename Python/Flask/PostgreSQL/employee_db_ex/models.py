@@ -25,3 +25,4 @@ class Employee(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.Integer, nullable=False)
     state = db.Column(db.Text, nullable=False, default='CA')
+    dept_code = db.Column(db.Text, db.ForeignKey('departments.dept_code'))
