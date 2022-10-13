@@ -38,7 +38,7 @@ def add_user_form():
 
 @app.route('/users/new', methods=['POST'])
 def process_add_user_form():
-    """Take values from add user from and add to db"""
+    """Take values from add user form and add to db"""
     
     first_name = request.form['first_name']
     last_name = request.form['last_name']
@@ -55,13 +55,14 @@ def process_add_user_form():
 def info_page(user_id):
     """Shows user info"""
     
-    user = User.query.get_or_404(user_id)
+    user = User.query.get_or_404(user_id)    
+    posts = Post.query.filter(Post.user_id == user.id)
     
-    return render_template('info.html', user=user)
+    return render_template('info.html', user=user, posts=posts)
 
 @app.route('/users/<int:user_id>/edit')
 def edit_user(user_id):
-    """Show edit user page"""
+    """Show edit user form"""
     
     user = User.query.get_or_404(user_id)
     
@@ -103,15 +104,25 @@ def show_post_form(user_id):
 
 @app.route('/users/<int:user_id>/posts/new', methods=['POST'])
 def process_add_post_form(user_id):
-    """Take values from add post from and add to db"""
+    """Take values from add post form and add to db"""
+
+    user = User.query.get_or_404(user_id)    
     
-    title = request.form['title']
-    content = request.form['content']
-    user = User.query.get_or_404(user_id)   
-    
-    post = Post(title=title,content=content,user=user)
+    post = Post(title=request.form['title'],content=request.form['content'],user_id=user.id)
     
     db.session.add(post)
     db.session.commit()
     
-    return redirect('/users/{{user.id}}')
+    flash(f"Post '{post.title}' added.")
+    
+    return redirect(f'/users/{user.id}')
+
+@app.route('/posts/<int:post_id>')
+def show_post(post_id):
+    """Show post info"""
+    
+    post = Post.query.get_or_404(post_id)
+    
+    return render_template('show_post.html', post=post)
+    
+    

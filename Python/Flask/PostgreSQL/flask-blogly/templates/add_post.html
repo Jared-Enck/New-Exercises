@@ -9,7 +9,7 @@
         <input type="text" name="title" placeholder="Enter a title">
 
         <label for="content">Content</label>
-        <input type="text" name="content">
+        <textarea name="content"></textarea>
 
         <button formaction="/users/{{user.id}}" formmethod="GET">Cancel</button>
         <button formaction="/users/{{user.id}}/posts/new" formmethod="POST">Add</button>
