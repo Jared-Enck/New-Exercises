@@ -1,11 +1,11 @@
 body {
     margin: 0;
-    padding: 0;
+    padding-left: 20px;
 }
 
 h1 {
     margin: 0;
-    padding: 10px;
+    padding: 10px 0px 10px 0px;
 }
 
 img {
@@ -15,4 +15,19 @@ img {
 
 button {
     cursor: pointer;
+    padding: 5px;
+    color: white;
+    background-color: rgb(44, 54, 255);
+    border: 1.5px solid rgb(44, 54, 255);
+    border-radius: 3px;
+}
+
+.cancel {
+    background-color: transparent;
+    color: rgb(44, 54, 255);
+}
+
+.delete {
+    background-color: red;
+    border: 1.5px solid red;
 }

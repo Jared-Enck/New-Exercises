@@ -9,9 +9,9 @@
 <p style="font-style: italic;">By {{post.user_post.first_name}} {{post.user_post.last_name}}</p>
 
 <form>
-    <button formaction="/users/{{ post.user_id }}">Cancel</button>
+    <button formaction="/users/{{ post.user_id }}" class="cancel">Cancel</button>
     <button formaction="/posts/{{ post.id }}/edit">Edit</button>
-    <button formaction="/posts/{{ post.id }}/delete">Delete</button>
+    <button formaction="/posts/{{ post.id }}/delete" formmethod="POST" class="delete">Delete</button>
 </form>
 
 {%endblock%}

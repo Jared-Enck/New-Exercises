@@ -124,5 +124,36 @@ def show_post(post_id):
     post = Post.query.get_or_404(post_id)
     
     return render_template('show_post.html', post=post)
+
+@app.route('/posts/<int:post_id>/edit')
+def post_edit(post_id):
+    """Show edit post from"""
     
+    post = Post.query.get_or_404(post_id)
     
+    return render_template('edit_post.html', post=post)
+
+@app.route('/posts/<int:post_id>/edit', methods=['POST'])
+def save_edited_post(post_id):
+    """Save edited post to db"""
+    
+    post = Post.query.get_or_404(post_id)
+    
+    post.title = request.form['title']
+    post.content = request.form['content']
+    
+    db.session.add(post)
+    db.session.commit()
+    
+    return redirect(f'/posts/{post.id}')
+
+@app.route('/posts/<int:post_id>/delete', methods=['POST'])
+def delete_post(post_id):
+    """Delete post from db"""
+    
+    post = Post.query.get_or_404(post_id)
+    
+    db.session.delete(post)
+    db.session.commit()
+    
+    return redirect(f'/users/{post.user_id}')
