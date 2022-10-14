@@ -31,3 +31,7 @@ button {
     background-color: red;
     border: 1.5px solid red;
 }
+
+a {
+    text-decoration: none;
+}

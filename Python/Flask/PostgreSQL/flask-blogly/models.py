@@ -8,6 +8,8 @@ def connect_db(app):
     db.app = app
     db.init_app(app)
     
+default_img = 'https://cdn-icons-png.flaticon.com/512/1053/1053244.png?w=360'
+    
 class User(db.Model):
     """Users"""
     
@@ -16,7 +18,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement= True)
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
-    image_url = db.Column(db.String, nullable=False, default='https://cdn-icons-png.flaticon.com/512/1053/1053244.png?w=360')
+    image_url = db.Column(db.String, nullable=False, default=default_img)
 
 class Post(db.Model):
     """Posts"""

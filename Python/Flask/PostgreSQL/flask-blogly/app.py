@@ -94,6 +94,8 @@ def remove_user(user_id):
 
     return redirect('/users')
 
+##### posts view routes #####
+
 @app.route('/users/<int:user_id>/posts/new')
 def show_post_form(user_id):
     """Shows add post form"""
