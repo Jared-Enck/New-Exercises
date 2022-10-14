@@ -1,7 +1,7 @@
 """Blogly application."""
 
 from crypt import methods
-from flask import Flask, request, render_template, redirect, flash, session
+from flask import Flask, request, render_template, redirect
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, Post
 
@@ -112,8 +112,6 @@ def process_add_post_form(user_id):
     
     db.session.add(post)
     db.session.commit()
-    
-    flash(f"Post '{post.title}' added.")
     
     return redirect(f'/users/{user.id}')
 
