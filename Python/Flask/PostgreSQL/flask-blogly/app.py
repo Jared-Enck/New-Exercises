@@ -167,3 +167,31 @@ def show_all_tags():
     tags = Tag.query.all()
     
     return render_template('tag/tags.html', tags=tags)
+
+@app.route('/tags/<int:tag_id>')
+def tag_info(tag_id):
+    """Show tag to edit or delete"""
+    
+    tag = Tag.query.get_or_404(tag_id)
+    
+    return render_template('tag/tag_info.html', tag=tag)
+
+@app.route('/tags/<int:tag_id>/edit')
+def edit_tag(tag_id):
+    """Show edit tag form"""
+    
+    tag = Tag.query.get_or_404(tag_id)
+    
+    return render_template('tag/edit_tag.html', tag=tag)
+
+@app.route('/tags/<int:tag_id>/edit', methods=['POST'])
+def process_edit_tag(tag_id):
+    """Save edited tag to db"""
+    tag = Tag.query.get_or_404(tag_id)
+    
+    tag.name = request.form['name']
+    
+    db.session.add(tag)
+    db.session.commit()
+    
+    return redirect('/tags')
