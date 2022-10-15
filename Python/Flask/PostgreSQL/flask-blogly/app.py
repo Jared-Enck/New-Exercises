@@ -3,7 +3,7 @@
 from crypt import methods
 from flask import Flask, request, render_template, redirect
 from flask_debugtoolbar import DebugToolbarExtension
-from models import db, connect_db, User, Post
+from models import db, connect_db, User, Post, Tag, PostTag
 
 app = Flask(__name__)
 
@@ -157,3 +157,13 @@ def delete_post(post_id):
     db.session.commit()
     
     return redirect(f'/users/{post.user_id}')
+
+#### Tag view routes ####
+
+@app.route('/tags')
+def show_all_tags():
+    """Shows all tags"""
+    
+    tags = Tag.query.all()
+    
+    return render_template('tags.html', tags=tags)

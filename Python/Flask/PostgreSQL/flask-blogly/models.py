@@ -31,7 +31,7 @@ class Post(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     
-    user_post = db.relationship('User', backref='posts')
+    post = db.relationship('User', backref='posts')
     
 class Tag(db.Model):
     """Tags"""
