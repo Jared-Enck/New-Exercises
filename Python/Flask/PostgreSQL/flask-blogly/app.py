@@ -28,13 +28,13 @@ def list_users():
     
     users = User.query.all()
     
-    return render_template('list.html', users=users)
+    return render_template('user/list.html', users=users)
 
 @app.route('/users/new')
 def add_user_form():
     """Show add user form"""
     
-    return render_template('add.html')
+    return render_template('user/add.html')
 
 @app.route('/users/new', methods=['POST'])
 def process_add_user_form():
@@ -58,7 +58,7 @@ def info_page(user_id):
     user = User.query.get_or_404(user_id)    
     posts = Post.query.filter(Post.user_id == user.id)
     
-    return render_template('info.html', user=user, posts=posts)
+    return render_template('user/info.html', user=user, posts=posts)
 
 @app.route('/users/<int:user_id>/edit')
 def edit_user(user_id):
@@ -66,7 +66,7 @@ def edit_user(user_id):
     
     user = User.query.get_or_404(user_id)
     
-    return render_template('edit.html', user=user)
+    return render_template('user/edit.html', user=user)
 
 @app.route('/users/<int:user_id>/edit', methods=['POST'])
 def process_edit_form(user_id):
@@ -102,7 +102,7 @@ def show_post_form(user_id):
     
     user = User.query.get_or_404(user_id)    
     
-    return render_template('add_post.html', user=user)
+    return render_template('post/add_post.html', user=user)
 
 @app.route('/users/<int:user_id>/posts/new', methods=['POST'])
 def process_add_post_form(user_id):
@@ -123,7 +123,7 @@ def show_post(post_id):
     
     post = Post.query.get_or_404(post_id)
     
-    return render_template('show_post.html', post=post)
+    return render_template('post/show_post.html', post=post)
 
 @app.route('/posts/<int:post_id>/edit')
 def post_edit(post_id):
@@ -131,7 +131,7 @@ def post_edit(post_id):
     
     post = Post.query.get_or_404(post_id)
     
-    return render_template('edit_post.html', post=post)
+    return render_template('post/edit_post.html', post=post)
 
 @app.route('/posts/<int:post_id>/edit', methods=['POST'])
 def save_edited_post(post_id):
@@ -166,4 +166,4 @@ def show_all_tags():
     
     tags = Tag.query.all()
     
-    return render_template('tags.html', tags=tags)
+    return render_template('tag/tags.html', tags=tags)

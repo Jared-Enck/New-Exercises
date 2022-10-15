@@ -6,7 +6,7 @@
 <h1>{{post.title}}</h1>
 
 <p>{{post.content}}</p>
-<p style="font-style: italic;">By {{post.user_post.first_name}} {{post.user_post.last_name}} on {{post.created_at}}</p>
+<p style="font-style: italic;">By {{post.post.first_name}} {{post.post.last_name}} on {{post.created_at}}</p>
 
 <form>
     <button formaction="/users/{{ post.user_id }}" class="cancel">Cancel</button>
