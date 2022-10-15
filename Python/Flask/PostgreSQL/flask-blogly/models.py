@@ -1,6 +1,6 @@
 """Models for Blogly."""
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import func
+from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -28,10 +28,16 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(50), nullable=False)
     content = db.Column(db.String(300), nullable=False)
-    created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     
     post = db.relationship('User', backref='posts')
+    
+    @property
+    def friendly_date(self):
+        """Return nicely-formatted date."""
+
+        return self.created_at.strftime("%a %b %-d  %Y, %-I:%M %p")
     
 class Tag(db.Model):
     """Tags"""
