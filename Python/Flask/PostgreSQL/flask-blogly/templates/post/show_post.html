@@ -8,6 +8,17 @@
 <p>{{post.content}}</p>
 <p style="font-style: italic;">By {{post.post.first_name}} {{post.post.last_name}} on {{post.created_at}}</p>
 
+{%if tags%}
+<div class="tags">
+    <p>
+        <b>Tags:</b> 
+        {% for tag in tags%}
+            <button>{{tag.name}}</button>
+        {% endfor %}
+    </p>
+</div>
+{%endif%}
+
 <form>
     <button formaction="/users/{{ post.user_id }}" class="cancel">Cancel</button>
     <button formaction="/posts/{{ post.id }}/edit">Edit</button>

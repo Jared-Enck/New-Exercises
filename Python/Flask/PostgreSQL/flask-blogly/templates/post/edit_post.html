@@ -9,6 +9,18 @@
         <input type="text" name="title" value="{{post.title}}">
         <label for="content">Post Content</label>
         <textarea name="content">{{post.content}}</textarea>
-        <button formaction="/posts/{{post.id}}" formmethod="GET" class="cancel">Cancel</button><button type="submit">Edit</button>
+
+        {% for tag in tags %}
+            <p>{{tag.name}} 
+            <input type="checkbox" value="{{tag.id}}" id="tag_{{tag.id}}" 
+            {% if tag in post.tagged %}
+                checked
+            {% endif %} 
+            name="tags">
+            </p>
+        {% endfor %}
+
+        <button formaction="/posts/{{post.id}}" formmethod="GET" class="cancel">Cancel</button>
+        <button formaction="/posts/{{post.id}}/edit" formmethod="POST">Save Edit</button>
     </form>
 {%endblock%}

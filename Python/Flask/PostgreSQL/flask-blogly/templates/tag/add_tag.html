@@ -8,7 +8,7 @@
         <label for="tag">Name</label>
         <input type="text" name="tag" placeholder="Enter a name for the tag">
 
-        <button formaction="/users/{{user.id}}" formmethod="GET" class="cancel">Cancel</button>
-        <button formaction="/users/{{user.id}}/posts/new" formmethod="POST">Add</button>
+        <button formaction="/tags" formmethod="GET" class="cancel">Cancel</button>
+        <button formaction="/tags/new" formmethod="POST">Add</button>
     </form>
 {%endblock%}

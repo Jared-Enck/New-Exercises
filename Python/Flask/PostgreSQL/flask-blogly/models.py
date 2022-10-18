@@ -32,6 +32,7 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     
     post = db.relationship('User', backref='posts')
+    tagged = db.relationship('Tag', secondary='posts_tags', backref='posts')
     
     @property
     def friendly_date(self):
@@ -46,8 +47,6 @@ class Tag(db.Model):
     
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(20), nullable=False, unique=True)
-    
-    tagged = db.relationship('Post', secondary='posts_tags', backref='tags')
     
 class PostTag(db.Model):
     """Post Tag relationship"""

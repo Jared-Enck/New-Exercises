@@ -20,7 +20,9 @@ connect_db(app)
 def home_page():
     """Shows Home Page"""
     
-    return render_template('base.html')
+    posts = Post.query.all()
+    
+    return render_template('base.html', posts=posts)
 
 @app.route('/users')
 def list_users():
@@ -100,21 +102,30 @@ def remove_user(user_id):
 def show_post_form(user_id):
     """Shows add post form"""
     
-    user = User.query.get_or_404(user_id)    
+    user = User.query.get_or_404(user_id) 
     
-    return render_template('post/add_post.html', user=user)
+    tags = Tag.query.all()
+    
+    return render_template('post/add_post.html', user=user, tags=tags)
 
 @app.route('/users/<int:user_id>/posts/new', methods=['POST'])
 def process_add_post_form(user_id):
     """Take values from add post form and add to db"""
 
     user = User.query.get_or_404(user_id)    
-    
+    tag_ids = [int(num) for num in request.form.getlist('tags')]
+    tags = Tag.query.filter(Tag.id.in_(tag_ids)).all()
     post = Post(title=request.form['title'],content=request.form['content'],user_id=user.id)
     
     db.session.add(post)
     db.session.commit()
     
+    for tag in tags:
+        tp = PostTag(post_id=post.id, tag_id=tag.id)
+        db.session.add(tp)
+    
+    db.session.commit()
+
     return redirect(f'/users/{user.id}')
 
 @app.route('/posts/<int:post_id>')
@@ -122,25 +133,29 @@ def show_post(post_id):
     """Show post info"""
     
     post = Post.query.get_or_404(post_id)
+    tags = post.tagged
     
-    return render_template('post/show_post.html', post=post)
+    return render_template('post/show_post.html', post=post, tags=tags)
 
 @app.route('/posts/<int:post_id>/edit')
 def post_edit(post_id):
     """Show edit post from"""
     
     post = Post.query.get_or_404(post_id)
+    tags = Tag.query.all()
     
-    return render_template('post/edit_post.html', post=post)
+    return render_template('post/edit_post.html', post=post, tags=tags)
 
 @app.route('/posts/<int:post_id>/edit', methods=['POST'])
 def save_edited_post(post_id):
     """Save edited post to db"""
     
     post = Post.query.get_or_404(post_id)
-    
     post.title = request.form['title']
     post.content = request.form['content']
+    
+    tag_ids = [int(num) for num in request.form.getlist('tags')]
+    post.tagged = Tag.query.filter(Tag.id.in_(tag_ids)).all()
     
     db.session.add(post)
     db.session.commit()
@@ -192,6 +207,33 @@ def process_edit_tag(tag_id):
     tag.name = request.form['name']
     
     db.session.add(tag)
+    db.session.commit()
+    
+    return redirect('/tags')
+
+@app.route('/tags/new')
+def add_tag_form():
+    """Shows add tag form"""
+
+    return render_template('/tag/add_tag.html')
+
+@app.route('/tags/new', methods=['POST'])
+def handle_add_tag():
+    """Handles add tag form and adds new tag to db"""
+    
+    tag = Tag(name=request.form['tag'])
+    
+    db.session.add(tag)
+    db.session.commit()
+    
+    return redirect('/tags')
+
+@app.route('/tags/<int:tag_id>/delete', methods=['POST'])
+def handle_delete_tag(tag_id):
+    """Delete tag from db"""
+    tag = Tag.query.get_or_404(tag_id)
+    
+    db.session.delete(tag)
     db.session.commit()
     
     return redirect('/tags')

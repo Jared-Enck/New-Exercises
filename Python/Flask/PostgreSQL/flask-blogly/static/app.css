@@ -1,6 +1,5 @@
 body {
     margin: 0;
-    padding-left: 20px;
 }
 
 h1 {
@@ -15,6 +14,7 @@ img {
 
 button {
     cursor: pointer;
+    margin: 1px;
     padding: 5px;
     color: white;
     background-color: rgb(44, 54, 255);
@@ -34,4 +34,44 @@ button {
 
 a {
     text-decoration: none;
+    color: black;
+}
+
+.tags button {
+    padding: 1px 3px 1px 3px;
+    border-radius: 5px;
+}
+
+form p {
+    margin: 0;
+}
+
+.post {
+    width: 40vw;
+    margin: 10px;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+.post h2 {
+    margin: 0;
+    padding: 5px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+    background-color: silver;
+}
+
+.post p {
+    padding: 3px;
+}
+
+#nav_bar {
+    margin: 0;
+    padding: 7px;
+    background-color: black;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#nav_bar a {
+    color: white;
+    padding: 5px;
 }
