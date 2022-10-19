@@ -4,9 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <link rel="stylesheet" href="/static/app.css">
+    <title>{% block title %}Home Page{% endblock %}</title>
 </head>
 <body>
+    <nav id="nav-bar">
+        <a href="/">Home</a>
+        |
+    </nav>
+    {% block content %}
     <h1>All Pets</h1>
+    {% endblock %}
 </body>
 </html>
