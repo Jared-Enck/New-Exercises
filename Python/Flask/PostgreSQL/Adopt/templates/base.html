@@ -5,22 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/app.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <title>{% block title %}Home Page{% endblock %}</title>
 </head>
 <body>
     <nav id="nav-bar">
         <a href="/">Home</a>
-        |
+        <a href="/add">Add Pet</a>
     </nav>
     {% block content %}
-    <h1>All Pets</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="messages">
+                {% for category, msg in messages%}
+                    <p class="{{category}}">{{msg}}</p>
+                {%endfor%}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <h1>Pets</h1>
     <section class="container">
         {% for pet in pets %}
         <div class="pet-container">
-            <div class="pet-photo" style="background-image: url();">
-                <img src={{pet.photo_url}} alt="{{pet.name}}">
+            <div class="pet-photo">
+                <img src={{pet.photo}} alt="{{pet.name}}">
             </div>
-            <p>{{pet.name}}
+            <p><a href="/{{pet.id}}">{{pet.name}}</a>
+                {% if pet.available %}
+                    <b> is available!</b>
+                {% else %}
+                    <b style="color: red;"> is not available</b>
+                {% endif %}
             </p>
         </div>
         {% endfor %}

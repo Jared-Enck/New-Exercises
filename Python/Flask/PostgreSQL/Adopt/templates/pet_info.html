@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Pet Info{% endblock %}
+
+{% block content %}
+<h1>Info about {{pet.name}}</h1>
+
+<div class="pet-container">
+    {% if pet.photo %}
+        <div class="pet-photo" style="background-image: url();">
+            <img src={{pet.photo}} alt="{{pet.name}}">
+        </div>
+    {% endif %}
+    <p>Species: {{pet.species}}</p>
+    {% if pet.age %}
+        <p>Age: {{pet.age}}</p>
+    {% endif %}
+<p>{{pet.notes}}</p>
+<p>
+    {% if pet.available %}
+    {{pet.name}} is available for adoption!
+    {% else %}
+    Sorry, {{pet.name}} has already been adopted.
+    {% endif %}
+</p>
+
+<form action="/{{pet.id}}" method="POST" id="edit_pet">
+    {{ form.hidden_tag() }}
+    
+    {% for field in form
+        if field.widget.input_type != 'hidden' %}
+
+        <p>
+            {{ field.label }}
+        </p>
+        <p>
+            {{ field }}
+
+            {% for error in field.errors %}
+                <small style="color: rgb(170,0,0);">
+                {{ error }}
+                </small>
+            {% endfor %}
+        </p>
+
+    {% endfor %}
+    <button>Save!</button>
+</form>
+
+{% endblock %}
