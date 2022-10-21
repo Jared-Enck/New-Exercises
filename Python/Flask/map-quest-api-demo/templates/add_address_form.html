@@ -5,5 +5,9 @@ Address Form
 {% endblock%}
 
 {% block content%}
-
+<h1>Add Address</h1>
+<form action="/geocode">
+    <input type="text" name="address" placeholder="Enter Address">
+    <button>Go!</button>
+</form>
 {% endblock %}

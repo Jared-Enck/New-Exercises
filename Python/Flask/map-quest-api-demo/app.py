@@ -24,4 +24,12 @@ def homepage():
 def show_address_form():
     """Shows address form"""
     
-    return render_template('address_form.html')
+    return render_template('add_address_form.html')
+
+@app.route('/geocode')
+def get_location():
+    address = request.args['address']
+    res = requests.get(API_BASE_URL, 
+                 params={'key': MQ_API_KEY, 'location': address}
+    
+    print(res)
