@@ -21,7 +21,9 @@ connect_db(app)
 def show_hompage():
     """Shows homepage"""
     
-    return render_template('base.html')
+    form = CupcakeForm()
+    
+    return render_template('base.html', form=form)
 
 @app.route('/api/cupcakes')
 def show_cupcakes():

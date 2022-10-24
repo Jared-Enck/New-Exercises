@@ -55,3 +55,36 @@ h1 {
 .messages .error {
     background-color: rgb(170, 0, 0);
 }
+button {
+    cursor: pointer;
+    margin: 1px;
+    padding: 5px;
+    color: white;
+    background-color: rgb(44, 54, 255);
+    border: 1.5px solid rgb(44, 54, 255);
+    border-radius: 3px;
+    width: 80px;
+    height: 30px;
+    font-size: 17px;
+}
+
+.cancel {
+    background-color: transparent;
+    color: rgb(44, 54, 255);
+}
+
+.delete {
+    background-color: rgb(170, 0, 0);
+    border: 1.5px solid rgb(170, 0, 0);
+}
+
+#cupcake_form {
+    width: 300px;
+    margin-left: 20px;
+    padding: 0;
+}
+
+input {
+    height: 25px;
+    width: 300px;
+}

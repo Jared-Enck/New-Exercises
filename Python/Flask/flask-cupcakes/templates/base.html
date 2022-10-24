@@ -23,7 +23,30 @@
             </div>
         {% endif %}
     {% endwith %}
-    <h1>Cupcake Home</h1>
+    <h1>Add a Cupcake!</h1>
+    <form action="/api/cupcakes" method="POST" id="cupcake_form">
+        {{ form.hidden_tag() }}
+        
+        {% for field in form
+            if field.widget.input_type != 'hidden' %}
+    
+            <p>
+                {{ field.label }}
+            </p>
+            <p>
+                {{ field }}
+    
+                {% for error in field.errors %}
+                    <small style="color: rgb(170,0,0);">
+                    {{ error }}
+                    </small>
+                {% endfor %}
+            </p>
+    
+        {% endfor %}
+        <button>Add!</button>
+    </form>
+
     {% endblock %}
 </body>
 </html>
