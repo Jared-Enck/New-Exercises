@@ -23,7 +23,7 @@ def show_hompage():
     
     form = CupcakeForm()
     
-    return render_template('base.html', form=form)
+    return render_template('index.html', form=form)
 
 @app.route('/api/cupcakes')
 def show_cupcakes():
@@ -60,7 +60,8 @@ def add_cupcake():
     db.session.add(cupcake)
     db.session.commit()
     
-    serialized = cupcake.serialize()    
+    serialized = cupcake.serialize()
+    flash(f'Added {cupcake.flavor} cupcake.', 'success')
     
     return (jsonify(cupcake=serialized), 201)
 

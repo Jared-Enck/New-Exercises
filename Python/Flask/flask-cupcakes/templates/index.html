@@ -9,10 +9,6 @@
     <title>{% block title %}Cupcakes{% endblock %}</title>
 </head>
 <body>
-    <nav id="nav-bar">
-        <a href="/">Home</a>
-        <a href="/api/cupcakes">Cupcakes</a>
-    </nav>
     {% block content %}
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
@@ -23,8 +19,10 @@
             </div>
         {% endif %}
     {% endwith %}
-    <h1>Add a Cupcake!</h1>
-    <form action="/api/cupcakes" method="POST" id="cupcake_form">
+    <h1>Cupcake Flavors</h1>
+    <ul id="list-cupcakes"></ul>
+    <h2>Add a Cupcake!</h2>
+    <form id="cupcake_form">
         {{ form.hidden_tag() }}
         
         {% for field in form
@@ -44,9 +42,17 @@
             </p>
     
         {% endfor %}
-        <button>Add!</button>
+        <button class="add-cupcake">Add!</button>
     </form>
 
     {% endblock %}
+    <script 
+    src="https://unpkg.com/axios/dist/axios.min.js"
+    crossorigin="anonymous"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+    crossorigin="anonymous"></script>
+    <script src="/static/app.js"></script>
 </body>
 </html>
