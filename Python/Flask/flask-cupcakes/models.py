@@ -27,13 +27,34 @@ class Cupcake(db.Model):
     image = db.Column(db.String, 
                             nullable=False, default=default_img)
     
-    def serialize_cupcake(cupcake):
+    def __repr__(self):
+        """Show info about cupcake."""
+
+        c = self
+        return f"<Cupcake {c.id} {c.flavor} {c.size} {c.rating} {c.image}>"
+    
+    def serialize(self):
         """Serlialize cupcake obj to dictionary"""
         
         return {
-            "id": cupcake.id,
-            "flavor": cupcake.flavor,
-            "size": cupcake.size,
-            "rating": cupcake.rating,
-            "image": cupcake.image
+            "id": self.id,
+            "flavor": self.flavor,
+            "size": self.size,
+            "rating": self.rating,
+            "image": self.image
         }
+
+    def handle_cupcake_form(form):
+        """Process cupcake form data"""
+        
+        if form.image.data:            
+            return Cupcake(
+            flavor=form.flavor.data,
+            size=form.size.data,
+            image=form.image.data,
+            rating=form.rating.data)
+        else:
+            return Cupcake(
+            flavor=form.flavor.data,
+            size=form.size.data,
+            rating=form.rating.data)
