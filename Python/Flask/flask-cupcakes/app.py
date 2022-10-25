@@ -1,12 +1,14 @@
 """Flask app for Cupcakes"""
 from crypt import methods
 from urllib import response
+from flask_cors import CORS
 from flask import Flask, redirect, render_template, request, flash, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
 from models import Cupcake, db, connect_db
 from forms import CupcakeForm
 
 app = Flask(__name__)
+CORS(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///cupcakes'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -37,7 +39,7 @@ def show_cupcakes():
 @app.route('/api/cupcakes/<int:cupcake_id>')
 def info_cupcake(cupcake_id):
     """Show info about specific cupcake"""
-    
+
     cupcake = Cupcake.query.get_or_404(cupcake_id)
     
     serialized = cupcake.serialize()
@@ -60,8 +62,8 @@ def add_cupcake():
     db.session.add(cupcake)
     db.session.commit()
     
-    serialized = cupcake.serialize()
     flash(f'Added {cupcake.flavor} cupcake.', 'success')
+    serialized = cupcake.serialize()
     
     return (jsonify(cupcake=serialized), 201)
 

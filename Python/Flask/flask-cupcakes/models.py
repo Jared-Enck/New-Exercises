@@ -43,18 +43,3 @@ class Cupcake(db.Model):
             "rating": self.rating,
             "image": self.image
         }
-
-    def handle_cupcake_form(form):
-        """Process cupcake form data"""
-        
-        if form.image.data:            
-            return Cupcake(
-            flavor=form.flavor.data,
-            size=form.size.data,
-            image=form.image.data,
-            rating=form.rating.data)
-        else:
-            return Cupcake(
-            flavor=form.flavor.data,
-            size=form.size.data,
-            rating=form.rating.data)
