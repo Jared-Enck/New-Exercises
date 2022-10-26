@@ -70,7 +70,7 @@ def show_tweets():
     """Shows tweets"""
         
     if 'user_id' not in session:
-        flash('Please login first.', 'error')
+        flash('Please login first.', 'danger')
         
         return redirect('/')
     form = TweetForm()
@@ -99,10 +99,10 @@ def delete_tweet(id):
     if tweet.user_id == session['user_id']:
         db.session.delete(tweet)
         db.session.commit()
-        flash('Tweet Deleted!', 'success')
+        flash('Tweet Deleted!', 'info')
         return redirect('/tweets')
     
-    flash("You can't do that", 'error')
+    flash("You can't do that", 'danger')
     return redirect('/tweets')
 
 @app.route('/logout', methods=['POST'])
@@ -110,5 +110,5 @@ def logout_user():
     """Logs user out"""
     
     session.pop('user_id')
-    flash('Successfully logged out', 'success')
+    flash('Successfully logged out', 'info')
     return redirect('/')

@@ -33,9 +33,9 @@
     </nav>
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-            <div class="messages">
+            <div class="container" style="margin-top: 1em;">
                 {% for category, msg in messages %}
-                    <p class="{{category}}">{{msg}}</p>
+                    <p class="alert alert-{{category}}">{{msg}}</p>
                 {% endfor %}
             </div>
         {% endif %}
