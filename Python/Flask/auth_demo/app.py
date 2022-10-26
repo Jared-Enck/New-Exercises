@@ -76,7 +76,7 @@ def show_tweets():
     
     return render_template('tweets.html')
 
-@app.route('/logout')
+@app.route('/logout', methods=['POST'])
 def logout_user():
     """Logs user out"""
     

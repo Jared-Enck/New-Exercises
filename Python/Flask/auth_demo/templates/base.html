@@ -16,7 +16,9 @@
             <ul class="nav navbar-nav flex-row float-right">
                 {% if session['user_id'] %}
                 <li class="nav-item">
-                    <a href="/logout" class="nav-link pr-3 text-light">Logout</a>
+                    <form>
+                        <button formaction="/logout" formmethod="POST" class="btn btn-link">Logout</button>
+                    </form>
                 </li>
                 {% else %}
                 <li class="nav-item">
