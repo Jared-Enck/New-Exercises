@@ -5,7 +5,7 @@ from flask_cors import CORS
 from flask import Flask, redirect, render_template, request, flash, jsonify, session
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, Tweet
-from forms import UserForm
+from forms import UserForm, TweetForm
 
 app = Flask(__name__)
 CORS(app)
@@ -65,16 +65,45 @@ def login_user():
             
     return render_template('login.html', form=form)
 
-@app.route('/tweets')
+@app.route('/tweets', methods=['GET', 'POST'])
 def show_tweets():
     """Shows tweets"""
-    
+        
     if 'user_id' not in session:
         flash('Please login first.', 'error')
         
         return redirect('/')
+    form = TweetForm()
     
-    return render_template('tweets.html')
+    all_tweets = Tweet.query.all()
+    if form.validate_on_submit():
+        text = form.text.data
+        new_tweet = Tweet(text=text, user_id=session['user_id'])
+        
+        db.session.add(new_tweet)
+        db.session.commit()
+        
+        flash('Tweet Created!', 'success')
+        return redirect('/tweets')
+    
+    return render_template('tweets.html', form=form, tweets=all_tweets)
+
+@app.route('/tweets/<int:id>', methods=['POST'])
+def delete_tweet(id):
+    """Delete tweet"""
+    if 'user_id' not in session:
+        flash('Please login first', 'error')
+        return redirect('/login')
+    tweet = Tweet.query.get_or_404(id)
+    
+    if tweet.user_id == session['user_id']:
+        db.session.delete(tweet)
+        db.session.commit()
+        flash('Tweet Deleted!', 'success')
+        return redirect('/tweets')
+    
+    flash("You can't do that", 'error')
+    return redirect('/tweets')
 
 @app.route('/logout', methods=['POST'])
 def logout_user():
