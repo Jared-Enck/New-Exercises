@@ -4,7 +4,7 @@ from types import new_class
 from flask_cors import CORS
 from flask import Flask, redirect, render_template, request, flash, jsonify, session
 from flask_debugtoolbar import DebugToolbarExtension
-from models import db, connect_db, User
+from models import db, connect_db, User, Tweet
 from forms import UserForm
 
 app = Flask(__name__)
