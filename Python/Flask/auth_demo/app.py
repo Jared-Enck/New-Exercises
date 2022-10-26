@@ -1,5 +1,6 @@
 from crypt import methods
 from operator import ne
+from sqlite3 import IntegrityError
 from types import new_class
 from flask_cors import CORS
 from flask import Flask, redirect, render_template, request, flash, jsonify, session
@@ -37,7 +38,11 @@ def register_user():
         new_user = User.register(username,password)
         
         db.session.add(new_user)
-        db.session.commit()
+        try:
+            db.session.commit()
+        except IntegrityError:
+            form.username.errors.append('Username is taken.')
+            return render_template('register.html', form=form)
         session['user_id'] = new_user.id
         
         flash(f'Welcome {new_user.username}! Successfully created your account!', 'success')
