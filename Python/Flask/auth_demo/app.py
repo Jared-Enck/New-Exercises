@@ -1,7 +1,9 @@
+from crypt import methods
 from flask_cors import CORS
 from flask import Flask, redirect, render_template, request, flash, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User
+from forms import UserForm
 
 app = Flask(__name__)
 CORS(app)
@@ -21,3 +23,10 @@ def show_homepage():
     """Shows homepage"""
     
     return render_template('base.html')
+
+@app.route('/register', methods=['GET', 'POST'])
+def register_user():
+    
+    form = UserForm()
+    
+    return render_template('register.html', form=form)
