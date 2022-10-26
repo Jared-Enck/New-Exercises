@@ -15,7 +15,6 @@
         <a href="/login">Login</a>
         <a href="/register">Sign Up</a>
     </nav>
-    {% block content %}
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             <div class="messages">
@@ -25,7 +24,8 @@
             </div>
         {% endif %}
     {% endwith %}
-    <h1></h1>
+    {% block content %}
+    <h1>Bobo Twitter</h1>
     {% endblock %}
 </body>
 </html>
