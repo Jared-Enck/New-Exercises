@@ -14,3 +14,9 @@ app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 toolbar = DebugToolbarExtension(app)
 
 connect_db(app)
+
+@app.route('/')
+def show_homepage():
+    """Shows homepage"""
+    
+    return render_template('base.html')
