@@ -17,6 +17,11 @@
                 {% if session['username'] %}
                 <li class="nav-item">
                     <form>
+                        <button formaction="/{{session['username']}}/add_feedback" formmethod="GET" class="btn btn-link">Add Feedback</button>
+                    </form>
+                </li>
+                <li class="nav-item">
+                    <form>
                         <button formaction="/logout" formmethod="POST" class="btn btn-link">Logout</button>
                     </form>
                 </li>

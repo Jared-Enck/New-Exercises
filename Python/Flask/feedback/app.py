@@ -2,7 +2,7 @@ from crypt import methods
 from sqlalchemy.exc import IntegrityError
 from flask import Flask, redirect, render_template, request, flash, jsonify, session
 from flask_debugtoolbar import DebugToolbarExtension
-from models import db, connect_db, User
+from models import Feedback, db, connect_db, User
 from forms import LoginForm, UserForm
 
 app = Flask(__name__)
@@ -74,10 +74,11 @@ def show_user_info(username):
         return redirect('/login')
     
     user = User.query.get_or_404(username)
+    feedback = Feedback.query.filter(Feedback.username == user.username).all()
     
     serialized = user.serialize()
     
-    return render_template('user_info.html', user=serialized)
+    return render_template('user_info.html', user=serialized, feedback=feedback)
 
 @app.route('/logout', methods=['POST'])
 def logout_user():
@@ -86,3 +87,33 @@ def logout_user():
     session.pop('username')
     flash('Successfully logged out', 'info')
     return redirect('/')
+
+@app.route('/users/<username>/delete', methods=['POST'])
+def delete_user(username):
+    """Delete user from db"""
+    
+    user = User.query.get_or_404(username)
+    
+    if 'username' not in session or session['username'] != username:
+        flash('Please login first.', 'danger')
+        
+        return redirect('/login')
+    
+    db.session.delete(user)
+    db.session.commit()
+    session.pop('username')
+    
+    flash('Successfully deleted your account', 'success')
+    
+    return redirect('/')
+
+
+
+@app.route('/<int:f_id>/edit', methods=['GET', 'POST'])
+def edit_feedback(f_id):
+    """Show and handle edit feedback form"""
+    
+    feedback = Feedback.query.get_or_404(f_id)
+    
+    
+    

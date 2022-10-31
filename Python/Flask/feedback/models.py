@@ -61,6 +61,9 @@ class User(db.Model):
         else:
             return False
         
+    user_fb = db.relationship('Feedback', backref='users')
+    feedback = db.relationship('Feedback', cascade="all, delete")
+    
 class Feedback(db.Model):
     __tablename__ = 'feedback'
     
@@ -68,3 +71,4 @@ class Feedback(db.Model):
     title = db.Column(db.String(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
     username = db.Column(db.Text, db.ForeignKey('users.username'))
+    
