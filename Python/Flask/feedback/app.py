@@ -41,8 +41,9 @@ def register_user():
             return render_template('register.html', form=form)
 
         flash(f'Welcome {new_user.username}! Successfully created your account!', 'success')
+        session['username'] = new_user.username
         
-        return redirect('/users/<username>')
+        return redirect(f'/users/{new_user.username}')
     
     return render_template('register.html', form=form)
 
@@ -67,7 +68,7 @@ def login_user():
 def show_user_info(username):
     """Show user info html"""
     
-    if 'username' not in session:
+    if 'username' not in session or session['username'] != username:
         flash('Please login first.', 'danger')
         
         return redirect('/login')
