@@ -27,12 +27,6 @@ class User(db.Model):
             "first_name": self.first_name,
             "last_name": self.last_name,
         }
-        
-    def list_user_info(user_obj):
-        """Generates list of user_obj values"""
-        
-        return [ i if i is not None else '' for i in user_obj ]
-        
     
     @classmethod
     def register(cls, form):
