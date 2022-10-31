@@ -27,6 +27,12 @@ def register_user():
     
     form = UserForm()
     
+    if form.validate_on_submit():
+        
+        new_user = User(
+            username=form.data.username,
+            password=)
     
+        flash(f'Welcome {new_user.username}! Successfully created your account!', 'success')
     
     return render_template('register.html', form=form)
