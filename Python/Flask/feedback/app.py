@@ -1,4 +1,5 @@
 from crypt import methods
+from sqlalchemy.exc import IntegrityError
 from flask import Flask, redirect, render_template, request, flash, jsonify, session
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User
@@ -33,7 +34,11 @@ def register_user():
         new_user = User.register(form)
         
         db.session.add(new_user)
-        db.session.commit()
+        try:
+            db.session.commit()
+        except IntegrityError:
+            form.username.errors.append('Username is taken.')
+            return render_template('register.html', form=form)
 
         flash(f'Welcome {new_user.username}! Successfully created your account!', 'success')
         
