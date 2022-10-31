@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Flask, redirect, render_template, request, flash, jsonify, session
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User
@@ -28,11 +29,34 @@ def register_user():
     form = UserForm()
     
     if form.validate_on_submit():
+                
+        new_user = User.register(form)
         
-        new_user = User(
-            username=form.data.username,
-            password=)
-    
-        flash(f'Welcome {new_user.username}! Successfully created your account!', 'success')
+        db.session.add(new_user)
+        db.session.commit()
+
+        if new_user.first_name:
+            flash(f'Welcome {new_user.first_name}! Successfully created your account!', 'success')
+        else:
+            flash(f'Welcome {new_user.username}! Successfully created your account!', 'success')
+        
+        return redirect('/secret')
     
     return render_template('register.html', form=form)
+
+@app.route('/login', methods=['GET','POST'])
+def login_user():
+    """Login user or redirect to register"""
+    
+    
+
+@app.route('/secret')
+def show_secret():
+    """Show secret html"""
+    
+    if 'username' not in session:
+        flash('Please login first.', 'danger')
+        
+        return redirect('/login')
+    
+    return render_template('secret.html')
