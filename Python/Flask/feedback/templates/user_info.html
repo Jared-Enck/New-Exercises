@@ -12,10 +12,10 @@
 </div>
 <div class="forms">
     <ul class="list-group">
-        {% for v in user.values() %}
+        {% for k, v in user.items() %}
             {% if v != '' %}
             <li class="list-group-item">
-                {{v}}
+                {{k}}: {{v}}
             </li>
             {% endif %}
         {% endfor %}
