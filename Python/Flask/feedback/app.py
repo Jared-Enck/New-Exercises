@@ -2,7 +2,7 @@ from crypt import methods
 from flask import Flask, redirect, render_template, request, flash, jsonify, session
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User
-from forms import UserForm
+from forms import LoginForm, UserForm
 
 app = Flask(__name__)
 
@@ -35,12 +35,9 @@ def register_user():
         db.session.add(new_user)
         db.session.commit()
 
-        if new_user.first_name:
-            flash(f'Welcome {new_user.first_name}! Successfully created your account!', 'success')
-        else:
-            flash(f'Welcome {new_user.username}! Successfully created your account!', 'success')
+        flash(f'Welcome {new_user.username}! Successfully created your account!', 'success')
         
-        return redirect('/secret')
+        return redirect('/users/<username>')
     
     return render_template('register.html', form=form)
 
@@ -48,15 +45,38 @@ def register_user():
 def login_user():
     """Login user or redirect to register"""
     
+    form = LoginForm()
     
+    if form.validate_on_submit():
+        user = User.authenticate(form)
+        if user:
+            flash(f'Welcome back, {user.username}!', 'info')
+            session['username'] = user.username
+            return redirect(f'/users/{user.username}')
+        else:
+            form.username.errors = ['Invalid username/password.']
+    
+    return render_template('login.html', form=form)
 
-@app.route('/secret')
-def show_secret():
-    """Show secret html"""
+@app.route('/users/<username>')
+def show_user_info(username):
+    """Show user info html"""
     
     if 'username' not in session:
         flash('Please login first.', 'danger')
         
         return redirect('/login')
     
-    return render_template('secret.html')
+    user = User.query.get_or_404(username)
+    
+    serialized = user.serialize()
+    
+    return render_template('user_info.html', user=serialized)
+
+@app.route('/logout', methods=['POST'])
+def logout_user():
+    """Logs user out"""
+    
+    session.pop('username')
+    flash('Successfully logged out', 'info')
+    return redirect('/')

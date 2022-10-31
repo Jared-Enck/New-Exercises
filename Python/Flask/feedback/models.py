@@ -18,6 +18,22 @@ class User(db.Model):
     first_name = db.Column(db.String(30), nullable=False)
     last_name = db.Column(db.String(30), nullable=False)
     
+    def serialize(self):
+        """Serlialize user obj to dictionary"""
+        
+        return {
+            "username": self.username,
+            "email": self.email,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+        }
+        
+    def list_user_info(user_obj):
+        """Generates list of user_obj values"""
+        
+        return [ i if i is not None else '' for i in user_obj ]
+        
+    
     @classmethod
     def register(cls, form):
         """Register user w/hashed password & return user."""
@@ -35,12 +51,15 @@ class User(db.Model):
         return cls(username=username, password=hashed_utf8, email=email, first_name=first_name,last_name=last_name)
     
     @classmethod
-    def authenticate(cls, username, pwd):
+    def authenticate(cls, form):
         """Validate that user exists & password is correct.
 
         Return user if valid; else return False.
         """
 
+        username = form.username.data
+        pwd = form.password.data
+        
         u = User.query.filter_by(username=username).first()
 
         if u and bcrypt.check_password_hash(u.password, pwd):

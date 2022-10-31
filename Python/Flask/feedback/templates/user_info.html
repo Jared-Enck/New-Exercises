@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}User Info{% endblock %}
+
+{% block content %}
+<div class="form-banner">
+    <h1 class="display-3">{{user.username}}</h1>
+    <p class="lead">
+        Edit info
+        <a href="/edit"> here</a>
+    </p>
+</div>
+<div class="forms">
+    <ul class="list-group">
+        {% for v in user.values() %}
+            {% if v != '' %}
+            <li class="list-group-item">
+                {{v}}
+            </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
