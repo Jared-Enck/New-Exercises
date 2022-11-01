@@ -30,7 +30,7 @@
         <div class="card-body">
             <h5 class="card-title text-info">{{f.title}}
                 {% if session['username'] == f.username %}
-                <form style="display: inline;" action="" method="POST">
+                <form style="display: inline;" action="/feedback/{{f.id}}/delete" method="POST">
                     <button class="btn btn-sm btn-danger">X</button>
                 </form>
                 {% endif %}

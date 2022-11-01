@@ -1,3 +1,4 @@
+from crypt import methods
 from sqlalchemy.exc import IntegrityError
 from flask import Flask, redirect, render_template, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
@@ -133,11 +134,47 @@ def add_feedback(username):
     
     return render_template('add_feedback.html', form=form)
 
-@app.route('/<int:f_id>/edit', methods=['GET', 'POST'])
+@app.route('/feedback/<int:f_id>/update', methods=['GET', 'POST'])
 def edit_feedback(f_id):
     """Show and handle edit feedback form"""
     
     feedback = Feedback.query.get_or_404(f_id)
     
+    form = AddFeedback(obj=feedback)
     
+    if 'username' not in session or session['username'] != feedback.username:
+        flash('Please login first.', 'danger')
+
+        return redirect('/login')
+
+    if form.validate_on_submit():
+        
+        feedback.title = form.title.data
+        feedback.content = form.content.data
+        
+        db.session.add(feedback)
+        db.session.commit()
+        
+        flash(f'Successfully edited "{feedback.title}".', 'success')
+        
+        return redirect(f'/users/{feedback.username}') 
     
+    return render_template('edit_feedback.html', form=form)
+
+@app.route('/feedback/<int:f_id>/delete', methods=['POST'])
+def delete_feedback(f_id):
+    """Delete feedback from db"""
+    
+    fb = Feedback.query.get_or_404(f_id)
+    
+    if 'username' not in session or session['username'] != fb.username:
+        flash('Please login first.', 'danger')
+        
+        return redirect('/login')
+    
+    db.session.delete(fb)
+    db.session.commit()
+    
+    flash('Successfully deleted your feedback.', 'success')
+    
+    return redirect(f'/users/{fb.username}')
