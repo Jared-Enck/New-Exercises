@@ -1,9 +1,8 @@
-from crypt import methods
 from sqlalchemy.exc import IntegrityError
-from flask import Flask, redirect, render_template, request, flash, jsonify, session
+from flask import Flask, redirect, render_template, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
 from models import Feedback, db, connect_db, User
-from forms import LoginForm, UserForm
+from forms import LoginForm, UserForm, AddFeedback
 
 app = Flask(__name__)
 
@@ -103,11 +102,36 @@ def delete_user(username):
     db.session.commit()
     session.pop('username')
     
-    flash('Successfully deleted your account', 'success')
+    flash('Successfully deleted your account.', 'success')
     
     return redirect('/')
 
+@app.route('/users/<username>/feedback/add', methods=['GET', 'POST'])
+def add_feedback(username):
+    """Show and handle add feedback form"""
+    
+    form = AddFeedback()
+    
+    if 'username' not in session or session['username'] != username:
+        flash('Please login first.', 'danger')
 
+        return redirect('/login')
+    
+    if form.validate_on_submit():
+        
+        feedback = Feedback(
+            title=form.title.data, 
+            content=form.content.data,
+            username=username)
+        
+        db.session.add(feedback)
+        db.session.commit()
+        
+        flash('Thank you for your feedback!', 'success')
+        
+        return redirect(f'/users/{username}')        
+    
+    return render_template('add_feedback.html', form=form)
 
 @app.route('/<int:f_id>/edit', methods=['GET', 'POST'])
 def edit_feedback(f_id):

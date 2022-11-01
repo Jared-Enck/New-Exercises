@@ -15,11 +15,13 @@
             <a href="/" class="navbar-brand text-light">Feedback</a>
             <ul class="nav navbar-nav flex-row float-right">
                 {% if session['username'] %}
-                <li class="nav-item">
-                    <form>
-                        <button formaction="/{{session['username']}}/add_feedback" formmethod="GET" class="btn btn-link">Add Feedback</button>
-                    </form>
-                </li>
+                    {% if 'Add Feedback' not in resp %}
+                        <li class="nav-item">
+                            <form>
+                                <button formaction="{{session['username']}}/feedback/add" formmethod="GET" class="btn btn-link">Add Feedback</button>
+                            </form>
+                        </li>
+                    {% endif %}
                 <li class="nav-item">
                     <form>
                         <button formaction="/logout" formmethod="POST" class="btn btn-link">Logout</button>
