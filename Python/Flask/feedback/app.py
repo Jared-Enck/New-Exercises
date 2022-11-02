@@ -7,6 +7,7 @@ from forms import LoginForm, UserForm, AddFeedback
 import os
 
 app = Flask(__name__)
+app.debug=True
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///feedback_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
