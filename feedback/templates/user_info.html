@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}User Info{% endblock %}
+
+{% block content %}
+<div class="form-banner">
+    <h1 class="display-3">{{user.username}}</h1>
+    <a href="/users/{{user.username}}/delete" class="btn btn-danger">Delete Account</a>
+</div>
+<div class="forms">
+    <ul class="list-group">
+        {% for k, v in user.items() %}
+            {% if v != '' %}
+            <li class="list-group-item">
+                {{k}}: {{v}}
+            </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="form-banner">
+    <h2 class="display-5">
+        All Feedback Given
+    </h2>
+</div>
+{% if feedback %}
+    {% for f in feedback %}
+    <div class="card forms" style="margin-top: 1em;">
+        <div class="card-body">
+            <h5 class="card-title text-info">{{f.title}}
+                {% if session['username'] == f.username %}
+                <form style="display: inline;" action="/feedback/{{f.id}}/delete" method="POST">
+                    <button class="btn btn-sm btn-danger">X</button>
+                </form>
+                {% endif %}
+            </h5>
+            <p class="card-text">
+                {{f.content}}
+            </p>
+            <form action="/feedback/{{f.id}}/update">
+                <button class="btn btn-info">Edit</button>
+            </form>
+        </div>
+    {% endfor %}
+{% endif %}
+{% endblock %}
