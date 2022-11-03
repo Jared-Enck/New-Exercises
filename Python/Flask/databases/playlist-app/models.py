@@ -9,12 +9,22 @@ class Playlist(db.Model):
     """Playlist."""
 
     # ADD THE NECESSARY CODE HERE
+    __tablename__ = 'playlists'
+    
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.Text, nullable=False)
+    description = db.column(db.String(200), nullable=False)
 
 
 class Song(db.Model):
     """Song."""
 
     # ADD THE NECESSARY CODE HERE
+    __tablename__ = 'songs'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.Text, nullable=False)
+    artist = db.Column(db.Text, nullable=False)
 
 
 class PlaylistSong(db.Model):
@@ -22,6 +32,9 @@ class PlaylistSong(db.Model):
 
     # ADD THE NECESSARY CODE HERE
 
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    playlist_id = db.Column(db.Integer, db.ForeignKey('playlists.id'))
+    song_id = db.Column(db.Integer, db.ForeignKey('songs.id'))
 
 # DO NOT MODIFY THIS FUNCTION
 def connect_db(app):
