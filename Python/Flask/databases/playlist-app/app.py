@@ -57,6 +57,12 @@ def add_playlist():
     """
 
     # ADD THE NECESSARY CODE HERE FOR THIS ROUTE TO WORK
+    
+    form = PlaylistForm()
+    
+    
+    
+    return render_template('new_playlist.html', form=form)
 
 
 ##############################################################################
