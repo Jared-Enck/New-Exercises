@@ -1,6 +1,7 @@
 """Models for Playlist app."""
 
 from flask_sqlalchemy import SQLAlchemy
+from flask import jsonify
 
 db = SQLAlchemy()
 
@@ -13,7 +14,15 @@ class Playlist(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(30), nullable=False)
     description = db.Column(db.String(50), nullable=False)
-
+    
+    def songs(self):
+        """Get songs on playlist"""
+        
+        songs = db.session.query(Song).filter(
+            PlaylistSong.playlist_id == self.id).all()
+        
+        return songs
+            
 class Song(db.Model):
     """Song."""
 

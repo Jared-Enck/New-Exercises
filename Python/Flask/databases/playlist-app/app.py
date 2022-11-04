@@ -45,7 +45,9 @@ def show_all_playlists():
 def show_playlist(playlist_id):
     """Show detail on specific playlist."""
 
-    # ADD THE NECESSARY CODE HERE FOR THIS ROUTE TO WORK
+    playlist = Playlist.query.get_or_404(playlist_id)
+    
+    return render_template('playlist.html', playlist=playlist)
 
 
 @app.route("/playlists/add", methods=["GET", "POST"])
@@ -127,17 +129,26 @@ def add_song_to_playlist(playlist_id):
 
     playlist = Playlist.query.get_or_404(playlist_id)
     form = NewSongForPlaylistForm()
-
+    
     # Restrict form to songs not already on this playlist
 
-    curr_on_playlist = ...
-    form.song.choices = ...
+    curr_on_playlist = [s.id for s in playlist.songs()]
+    form.song.choices = (db.session.query(Song.id, Song.title)
+                        .filter(Song.id.notin_(curr_on_playlist))
+                        .all())
 
     if form.validate_on_submit():
 
-          # ADD THE NECESSARY CODE HERE FOR THIS ROUTE TO WORK
+        # ADD THE NECESSARY CODE HERE FOR THIS ROUTE TO WORK        
+        song = Song.query.get(form.song.data)
+        pl_song = PlaylistSong(playlist_id=playlist_id, song_id=song.id)
+        
+        db.session.add(pl_song)
+        db.session.commit()
 
-          return redirect(f"/playlists/{playlist_id}")
+        flash(f'Added {song.title} to {playlist.name} playlist.', 'info')
+
+        return redirect(f"/playlists/{playlist_id}")
 
     return render_template("add_song_to_playlist.html",
                              playlist=playlist,
