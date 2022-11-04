@@ -4,9 +4,13 @@
 
 <h1>Check out the songs!</h1>
 
-<ul>
+<ul class="list-group">
 {% for song in songs %}
-  <li><a href="/songs/{{song.id}}">{{ song.title }}</a></li>
+    <li class="list-group-item mb-1">
+        <a href="/songs/{{song.id}}" class="text-dark">
+            {{ song.title }}
+        </a>
+    </li>
 {% endfor %}
 </ul>
 

@@ -2,16 +2,19 @@
 
 {% block content %}
 
-<h1>See all the playlists!</h1>
-
-<ul>
-{% for playlist in playlists %}
-  <li>
-     <a href="/playlists/{{ playlist.id }}">{{ playlist.name }}</a>
-  </li>
-{% endfor %}
-</ul>
-
+<h1>All playlists!</h1>
+<div class="forms">
+    <ul class="list-group">
+    {% for playlist in playlists %}
+        <li class="list-group-item mb-1 d-flex-inline">
+                <a href="/playlists/{{ playlist.id }}" class="text-dark">
+                    {{ playlist.name }}
+                </a>
+                <div class="float-right">{{ playlist.description }}</div>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
 <p><a class="btn btn-primary" href="/playlists/add">Add a playlist</a></p>
 
 {% endblock %}

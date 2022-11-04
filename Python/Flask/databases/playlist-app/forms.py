@@ -1,32 +1,28 @@
 """Forms for playlist app."""
 
-from wtforms import SelectField
+from wtforms import SelectField, StringField
 from flask_wtf import FlaskForm
-from wtforms_alchemy import model_form_factory
-from wtforms.validators import InputRequired, Optional
-from models import Playlist, Song, db
+from wtforms.validators import InputRequired, Optional, Length
 
-BaseModelForm = model_form_factory(FlaskForm)
-
-class ModelForm(BaseModelForm):
-    @classmethod
-    def get_session(self):
-        return db.session
-
-class PlaylistForm(ModelForm):
+class PlaylistForm(FlaskForm):
     """Form for adding playlists."""
 
-    # Add the necessary code to use this form
-    class Meta:
-        model = Playlist
+    name = StringField('Name', 
+                           validators=[InputRequired(), 
+                                       Length(min=2,max=30)])
+    description = StringField('Description',
+                                validators=[Optional(),
+                                            Length(min=2,max=50)])
 
-
-class SongForm(ModelForm):
+class SongForm(FlaskForm):
     """Form for adding songs."""
 
-    # Add the necessary code to use this form
-    class Meta:
-        model = Song
+    title = StringField('Title', 
+                        validators=[InputRequired(), 
+                                    Length(min=2,max=30)])
+    artist = StringField('Artist',
+                                validators=[InputRequired(),
+                                            Length(min=2,max=20)])
 
 
 # DO NOT MODIFY THIS FORM - EVERYTHING YOU NEED IS HERE
