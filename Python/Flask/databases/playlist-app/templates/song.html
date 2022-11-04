@@ -7,8 +7,13 @@
   <p class="lead">&ndash; {{ song.artist }}</p>
 </div>
 
-<ul>
-  DISPLAY ALL OF THE PLAYLISTS THAT THIS SONG IS A PART OF
-</ul>
-
+<ul class="list-group">
+  {% for pl in playlists %}
+      <li class="list-group-item mb-1">
+          <a href="/playlists/{{pl.id}}" class="text-dark">
+              {{ pl.name }}
+          </a>
+      </li>
+  {% endfor %}
+  </ul>
 {% endblock %}

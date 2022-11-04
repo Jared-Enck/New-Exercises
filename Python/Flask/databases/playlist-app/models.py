@@ -15,11 +15,13 @@ class Playlist(db.Model):
     name = db.Column(db.String(30), nullable=False)
     description = db.Column(db.String(50), nullable=False)
     
-    def songs(self):
+    @classmethod
+    def songs(cls, playlist_id):
         """Get songs on playlist"""
         
-        songs = db.session.query(Song).filter(
-            PlaylistSong.playlist_id == self.id).all()
+        songs = db.session.query(Song).\
+            join(PlaylistSong).filter(
+                PlaylistSong.playlist_id == playlist_id).all()
         
         return songs
             
@@ -31,6 +33,16 @@ class Song(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(30), nullable=False)
     artist = db.Column(db.String(20), nullable=False)
+    
+    @classmethod
+    def playlists(cls, song_id):
+        """Get playlists associated with song."""
+        
+        playlists = db.session.query(Playlist).\
+            join(PlaylistSong).filter(
+                PlaylistSong.song_id == song_id).all()
+        
+        return playlists
 
 class PlaylistSong(db.Model):
     """Mapping of a playlist to a song."""
