@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from flask_debugtoolbar import DebugToolbarExtension
 import requests
-from secrets import MQ_API_KEY
+from .secrets import MQ_API_KEY
 
 API_BASE_URL = 'http://www.mapquestapi.com/geocoding/v1/address'
 
@@ -30,6 +30,6 @@ def show_address_form():
 def get_location():
     address = request.args['address']
     res = requests.get(API_BASE_URL, 
-                 params={'key': MQ_API_KEY, 'location': address}
+                 params={'key': MQ_API_KEY, 'location': address})
     
     print(res)
