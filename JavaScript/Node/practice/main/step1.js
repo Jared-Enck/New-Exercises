@@ -11,4 +11,6 @@ cat = (path) => {
     })
 }
 
-cat(argv[2])
+if (argv[2]) {
+    cat(argv[2])
+}
