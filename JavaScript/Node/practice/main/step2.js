@@ -18,9 +18,8 @@ async function webCat(url) {
         console.log(data)
     }
     catch (err) {
-        let msg = `Error fetching ${url}`
-        console.log(msg)
-        console.log(`Request failed with status code ${err.response.status}`)
+        console.error(`Error fetching ${url}: ${err}`)
+        process.exit(1)
     }
 }
 
