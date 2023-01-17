@@ -3,6 +3,9 @@ const res = require('express/lib/response')
 
 const app = express()
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
 // app routes here.
 
 app.get('/', (req, res) => {
