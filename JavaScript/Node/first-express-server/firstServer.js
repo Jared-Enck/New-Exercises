@@ -6,7 +6,6 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 // app routes here.
-
 app.get('/', (req, res) => {
     res.send('<h1>Homepage</h1>')
 })
@@ -35,7 +34,7 @@ app.use((req, res, next) => {
     next(e)
 })
 
-// err handler, before app.listen
+// err handler, before app.listen. 4 args as listed below.
 app.use((err, req, res, next) => {
     let status = err.status || 500
     let msg = err.msg
@@ -46,7 +45,6 @@ app.use((err, req, res, next) => {
 })
 
 // app.listen at the end. Args (somePort, callback)
-
 app.listen(3000, () => {
     console.log('Server running on port 3000')
 })
