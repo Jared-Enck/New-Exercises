@@ -1,9 +1,11 @@
 const express = require('express')
 const ExpressError = require('./expError')
+const uRoutes = require("./routes/users");
 
 const app = express()
 
 app.use(express.json())
+app.use("/users", uRoutes);
 
 // err handlers
 app.use((req, res, next) => {
