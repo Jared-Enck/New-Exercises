@@ -1,3 +1,5 @@
+const { PGPASSWORD } = require('./instance/secrets')
+
 const { Client } = require("pg");
 
 let DB_URI;
@@ -9,7 +11,8 @@ if (process.env.NODE_ENV === "test") {
 }
 
 let db = new Client({
-  connectionString: DB_URI
+  connectionString: DB_URI,
+  password: PGPASSWORD
 });
 
 db.connect();
