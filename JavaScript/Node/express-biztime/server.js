@@ -1,8 +1,9 @@
 /** Server startup for BizTime. */
-
+require('dotenv').config()
+const port = process.env.PGPORT
 
 const app = require("./app");
 
-app.listen(3000, () => {
-  console.log("Listening on 3000");
+app.listen(port, () => {
+  console.log(`App running on port:${port}`);
 });

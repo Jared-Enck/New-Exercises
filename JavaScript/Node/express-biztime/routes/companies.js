@@ -1,16 +1,18 @@
 const express = require('express')
-const router = express.Router()
 const db = require('../db')
+const slugify = require('slugify')
 const ExpressError = require('../expressError')
+const router = express.Router()
 
 router.get('/', async (req, res, next) => {
-    try {
-        const results = await db.query(`SELECT code, name FROM companies`);
-        return res.json({ companies: results.rows })
-    }
-    catch (e) {
-        return next(e)
-    } 
+  try {
+    await db.connect()
+    const { rows } = await db.query(`SELECT code, name FROM companies`);
+    res.json({companies: rows})
+  }
+  catch (e) {
+    return next(e)
+  } 
 })  
   
   /** GET /[code] => detail on company
@@ -141,4 +143,4 @@ router.get('/', async (req, res, next) => {
     }
   });
 
-module.exports = router
+module.exports = router;

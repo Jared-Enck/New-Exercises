@@ -8,6 +8,7 @@ const iRoutes = require('./routes/invoices')
 const app = express();
 
 app.use(express.json());
+
 app.use('/companies', cRoutes)
 app.use('/invoices', iRoutes)
 
