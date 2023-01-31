@@ -6,9 +6,9 @@ const router = express.Router()
 
 router.get('/', async (req, res, next) => {
   try {
-    await db.connect()
-    const { rows } = await db.query(`SELECT code, name FROM companies`);
-    res.json({companies: rows})
+    const results = await db.query('SELECT code, name FROM companies');
+    console.log(results.rows)
+    // res.json({companies: cQuery.rows})
   }
   catch (e) {
     return next(e)
