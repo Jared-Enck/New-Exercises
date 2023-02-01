@@ -1,9 +1,9 @@
 /** Server startup for BizTime. */
-require('dotenv').config()
-const port = process.env.PGPORT
-
+const config = require('./config')
+const port = config.db.port
+const hostname = config.db.host
 const app = require("./app");
 
-app.listen(port, () => {
-  console.log(`App running on port:${port}`);
+app.listen(port, hostname, () => {
+  console.log(`App running at http://${hostname}:${port}/`);
 });

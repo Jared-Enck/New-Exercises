@@ -1,23 +1,35 @@
+const path = require('path')
 const ExpressError = require('./expressError')
-const { Client } = require("pg");
+const { Pool } = require('pg');
+const config = require('./config')
 
-let dbase;
+const env = process.env
 
-if (process.env.NODE_ENV === 'test') {
-  dbase = process.env.PGTESTDB
-} else {
-  dbase = process.env.PGDATABASE
+let dbase = config.db.database
+
+if (env.NODE_ENV === 'test') {
+  dbase = env.DB_TESTNAME
 }
 
-const DB_URI = `postgresql://
-${process.env.PGUSER}:
-${process.env.PGPASSWORD}/
-${dbase}`
+const pool = new Pool(config.db)
 
-const client = new Client({
-    connectionString: DB_URI,
-  })
+async function query(query, params) {
+  const {rows, fields} = await pool.query(query, params);
 
-client.connect()
+  return rows;
+}
 
-module.exports = client
+// const DB_URI = `socket:/var/run/postgresql?db=${dbase}`;
+
+// const DB_URI = `postgresql://
+//   ${env.PGUSER}:
+//   ${env.PGPASSWORD}/
+//   ${dbase}`;
+
+// const client = new Client({
+//   connectionString: DB_URI,
+// })
+
+// client.connect()
+
+module.exports = query
