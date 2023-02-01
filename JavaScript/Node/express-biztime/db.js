@@ -1,23 +1,17 @@
 const path = require('path')
 const ExpressError = require('./expressError')
-const { Pool } = require('pg');
-const config = require('./config')
+const { Client } = require('pg');
+const config = require('./config');
 
 const env = process.env
 
 let dbase = config.db.database
 
 if (env.NODE_ENV === 'test') {
-  dbase = env.DB_TESTNAME
+  dbase = env.DB_NAME_TEST
 }
 
-const pool = new Pool(config.db)
-
-async function query(query, params) {
-  const {rows, fields} = await pool.query(query, params);
-
-  return rows;
-}
+const client = new Client(config.db)
 
 // const DB_URI = `socket:/var/run/postgresql?db=${dbase}`;
 
@@ -30,6 +24,6 @@ async function query(query, params) {
 //   connectionString: DB_URI,
 // })
 
-// client.connect()
+client.connect()
 
-module.exports = query
+module.exports = client
