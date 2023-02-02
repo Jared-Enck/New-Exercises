@@ -16,14 +16,14 @@ const client = new Client(config.db)
 // const DB_URI = `socket:/var/run/postgresql?db=${dbase}`;
 
 // const DB_URI = `postgresql://
-//   ${env.PGUSER}:
-//   ${env.PGPASSWORD}/
+//   ${env.DB_USER}:
+//   ${env.DB_PASSWORD}/
 //   ${dbase}`;
 
 // const client = new Client({
 //   connectionString: DB_URI,
 // })
 
-client.connect()
+// client.connect()
 
 module.exports = client
