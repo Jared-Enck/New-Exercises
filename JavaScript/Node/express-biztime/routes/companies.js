@@ -66,7 +66,11 @@ router.get('/', async (req, res, next) => {
     try {
       let {name, description} = req.body;
       let code = slugify(name, {lower: true});
-  
+
+      if (!req.body.name) {
+        throw new ExpressError(`Please enter a company name`, 400)
+      }
+
       const {rows} = await db.query(
             `INSERT INTO companies (code, name, description) 
              VALUES ($1, $2, $3) 
@@ -88,7 +92,7 @@ router.get('/', async (req, res, next) => {
    *
    * */
   
-  router.put("/:code", async function (req, res, next) {
+  router.patch("/:code", async function (req, res, next) {
     try {
       let {name, description} = req.body;
       let code = req.params.code;
