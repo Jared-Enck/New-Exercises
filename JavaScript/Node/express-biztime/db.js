@@ -15,12 +15,15 @@ if (env.NODE_ENV === 'test') {
 
 // const DB_URI = `socket:/var/run/postgresql?db=${dbase}`;
 
-const DB_URI = `postgresql:///${dbase}`;
+// const DB_URI = `postgresql://
+//   ${env.PGUSER}:
+//   ${env.PGPASSWORD}/
+//   ${dbase}`;
 
 const client = new Client({
   connectionString: DB_URI,
 })
 
-client.connect()
+// client.connect()
 
 module.exports = client
