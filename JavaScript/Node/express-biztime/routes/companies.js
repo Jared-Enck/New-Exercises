@@ -6,9 +6,8 @@ const router = express.Router()
 
 router.get('/', async (req, res, next) => {
   try {
-    const results = await db.query('SELECT code, name FROM companies');
-    console.log(results)
-    res.json({companies: results.rows})
+    const {rows} = await db.query('SELECT code, name FROM companies');
+    res.json({companies: rows})
   }
   catch (e) {
     return next(e)
@@ -68,13 +67,13 @@ router.get('/', async (req, res, next) => {
       let {name, description} = req.body;
       let code = slugify(name, {lower: true});
   
-      const result = await db.query(
+      const {rows} = await db.query(
             `INSERT INTO companies (code, name, description) 
              VALUES ($1, $2, $3) 
              RETURNING code, name, description`,
           [code, name, description]);
   
-      return res.status(201).json({"company": result.rows[0]});
+      return res.status(201).json({"company": rows[0]});
     }
   
     catch (err) {

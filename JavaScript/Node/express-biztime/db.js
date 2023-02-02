@@ -11,18 +11,15 @@ if (env.NODE_ENV === 'test') {
   dbase = env.DB_NAME_TEST
 }
 
-const client = new Client(config.db)
+// const client = new Client(config.db)
 
 // const DB_URI = `socket:/var/run/postgresql?db=${dbase}`;
 
-// const DB_URI = `postgresql://
-//   ${env.PGUSER}:
-//   ${env.PGPASSWORD}/
-//   ${dbase}`;
+const DB_URI = `postgresql:///${dbase}`;
 
-// const client = new Client({
-//   connectionString: DB_URI,
-// })
+const client = new Client({
+  connectionString: DB_URI,
+})
 
 client.connect()
 
