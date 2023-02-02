@@ -1,11 +1,11 @@
 const path = require('path')
 const ExpressError = require('./expressError')
 const { Client } = require('pg');
-const config = require('./config');
+const config = require('./config').db;
 
 const env = process.env
 
-let dbase = config.db.database
+let dbase = config.database
 
 if (env.NODE_ENV === 'test') {
   dbase = env.DB_NAME_TEST
@@ -15,15 +15,12 @@ if (env.NODE_ENV === 'test') {
 
 // const DB_URI = `socket:/var/run/postgresql?db=${dbase}`;
 
-// const DB_URI = `postgresql://
-//   ${env.PGUSER}:
-//   ${env.PGPASSWORD}/
-//   ${dbase}`;
+const DB_URI = `postgresql:///${dbase}`;
 
 const client = new Client({
   connectionString: DB_URI,
 })
 
-// client.connect()
+client.connect()
 
 module.exports = client
