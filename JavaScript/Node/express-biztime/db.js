@@ -5,7 +5,7 @@ const config = require('./config').db;
 
 const env = process.env
 
-let dbase = config.database
+let dbase = 'biztime'
 
 if (env.NODE_ENV === 'test') {
   dbase = env.DB_NAME_TEST
@@ -13,9 +13,9 @@ if (env.NODE_ENV === 'test') {
 
 // const client = new Client(config.db)
 
-// const DB_URI = `socket:/var/run/postgresql?db=${dbase}`;
+const DB_URI = `socket:/var/run/postgresql?db=${dbase}`;
 
-const DB_URI = `postgresql:///${dbase}`;
+// const DB_URI = `postgresql://postgres:@localhost:5432/${dbase}`;
 
 const client = new Client({
   connectionString: DB_URI,
