@@ -15,7 +15,7 @@ if (env.NODE_ENV === 'test') {
 
 const DB_URI = `socket:/var/run/postgresql?db=${dbase}`;
 
-// const DB_URI = `postgresql://postgres:@localhost:5432/${dbase}`;
+// const DB_URI = `postgresql:///${dbase}`;
 
 const client = new Client({
   connectionString: DB_URI,
