@@ -2,7 +2,9 @@
 
 const pg = require("pg");
 
-const db = new pg.Client("postgresql:///lunchly");
+const db = new pg.Client({
+    connectionString: "socket:/var/run/postgresql?db=lunchly"
+});
 
 db.connect();
 
