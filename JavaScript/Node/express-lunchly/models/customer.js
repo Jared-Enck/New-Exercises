@@ -81,7 +81,7 @@ class Customer {
   
   /** get full name of customer. */ 
 
-  getFullName() {
+  fullName() {
     const fullName = `${this.firstName} ${this.lastName}`
 
     return fullName
