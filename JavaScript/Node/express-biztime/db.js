@@ -1,7 +1,5 @@
-const ExpressError = require('./expressError')
 const { Client } = require('pg');
 const config = require('./config').db;
-process.env.NODE_ENV = 'test'
 
 const DB_URI = `socket:/var/run/postgresql?db=${config.database}`;
 
