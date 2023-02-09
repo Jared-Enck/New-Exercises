@@ -4,9 +4,9 @@
 require("dotenv").config();
 const env = process.env
 
-const DB_URI = (env.NODE_ENV === "test")
-  ? `socket:/var/run/postgresql?db=${env.DB_NAME_TEST}`
-  : `socket:/var/run/postgresql?db=${env.DB_NAME}`;
+const dbase = (env.NODE_ENV === 'test') ? env.DB_NAME_TEST : env.DB_NAME
+
+const DB_URI = `socket:/var/run/postgresql?db=${dbase}`;
 
 const SECRET_KEY = env.SECRET_KEY;
 
