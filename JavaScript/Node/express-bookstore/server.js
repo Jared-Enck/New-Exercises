@@ -1,8 +1,8 @@
 /** Server for bookstore. */
-
+const { PORT, HOST } = require('./config')
 
 const app = require("./app");
 
-app.listen(3000, () => {
-  console.log(`Server starting on port 3000`);
+app.listen(PORT, () => {
+  console.log(`Server starting on ${HOST}:${PORT}`);
 });
