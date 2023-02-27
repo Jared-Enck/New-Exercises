@@ -2,6 +2,9 @@ import Pokecard from "./Pokecard"
 
 const Pokedex = ({pokeArr}) => (
     <div className="row justify-content-center">
+        <h2 className="text-center text-secondary">
+            Pokedex
+        </h2>
         {pokeArr.map(p => 
             <Pokecard 
                 key={p.id}
