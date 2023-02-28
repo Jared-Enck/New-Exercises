@@ -4,7 +4,7 @@ import './EightBall.css'
 const EightBall = ({answers}) => {
     const initialState = {
         msg: "Think of a Question",
-        color: "black"
+        color: "secondary"
     }
     function handleClick() {
         const idx = Math.floor(Math.random() * answers.length)
@@ -14,8 +14,8 @@ const EightBall = ({answers}) => {
 
     return <div className="row justify-content-center d-grid gap-2">
                 <div onClick={ handleClick } 
-                    className={`EightBall rounded-circle bg-${answer.color} d-flex align-items-center`}>
-                    <p className="EightBall-answer text-center text-white mx-auto">
+                    className="EightBall rounded-circle bg-black d-flex align-items-center">
+                    <p className={`EightBall-answer text-center text-white mx-auto p-2 rounded-5 bg-${answer.color}`}>
                         {answer.msg}
                     </p>
                 </div>
