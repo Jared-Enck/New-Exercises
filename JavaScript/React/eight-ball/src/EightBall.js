@@ -14,7 +14,7 @@ const EightBall = ({answers}) => {
 
     return <div className="row justify-content-center d-grid gap-2">
                 <div onClick={ handleClick } 
-                    className="EightBall rounded-circle bg-black d-flex align-items-center">
+                    className="EightBall rounded-circle d-flex align-items-center">
                     <p className={`EightBall-answer text-center text-white mx-auto p-2 rounded-5 bg-${answer.color}`}>
                         {answer.msg}
                     </p>
