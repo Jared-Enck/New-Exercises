@@ -1,0 +1,8 @@
+.EightBall {
+    width: 300px;
+    height: 300px;
+}
+
+.EightBall-answer {
+    font-size: 1.7rem;
+}
