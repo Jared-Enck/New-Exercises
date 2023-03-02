@@ -14,8 +14,8 @@ import "./Cell.css";
  *
  **/
 
-function Cell({ flipCellsAroundMe, isLit }) {
-  const classes = `Cell ${isLit ? "Cell-lit" : ""}`;
+function Cell({ flipCellsAroundMe, isLit=false }) {
+  const classes = `Cell border border-dark ${isLit ? "Cell-lit" : ""}`;
   return <td className={classes} onClick={flipCellsAroundMe} />;
 }
 

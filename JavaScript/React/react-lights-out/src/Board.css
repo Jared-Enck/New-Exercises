@@ -1,3 +1,21 @@
 .Board {
   margin: 0 auto;
+  width: 560px;
+}
+
+.Board-Winner {
+  position: absolute;
+  width: 100vw;
+  height: 400px;
+  top: 300px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: gold;
+  font-size: 8em;
+  animation: dropbanner 1s ;
+}
+
+@keyframes dropbanner {
+  0%   {top: -500px;}
+  97%  {top: 297px}
+  100% {top: 300px;}
 }
