@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="row mx-auto"
+  >
+    <div
+      class="col-6"
+    >
+      <form
+        class="form-control mb-3 shadow-sm bg-light"
+      >
+        <label
+          for="color"
+        >
+          Color
+        </label>
+        <input
+          class="form-control mb-2"
+          name="color"
+          placeholder="Enter a Color"
+          type="text"
+        />
+        <label
+          for="width"
+        >
+          Width
+        </label>
+        <input
+          class="form-control mb-2"
+          name="width"
+          placeholder="Enter width ex: 100px"
+          type="text"
+        />
+        <label
+          for="height"
+        >
+          Height
+        </label>
+        <input
+          class="form-control mb-2"
+          name="height"
+          placeholder="Enter height ex: 100px"
+          type="text"
+        />
+        <button
+          class="btn btn-medium btn-primary"
+        >
+          Add Box!
+        </button>
+      </form>
+    </div>
+  </div>
+  <div
+    class="row mx-auto"
+  >
+    <div
+      class="row mx-auto grid gap-4"
+    >
+      <div
+        class="rounded shadow"
+        style="background-color: red; width: 100px; height: 100px;"
+      />
+      <div
+        class="rounded shadow"
+        style="background-color: green; width: 100px; height: 100px;"
+      />
+      <div
+        class="rounded shadow"
+        style="background-color: blue; width: 100px; height: 100px;"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -1,10 +1,9 @@
 import './styles/App.css';
+import BoxList from './BoxList'
 
 function App() {
   return (
-    <div className="App">
-      
-    </div>
+    <BoxList />
   );
 }
 
