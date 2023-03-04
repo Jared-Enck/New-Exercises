@@ -18,6 +18,7 @@ exports[`matches snapshot 1`] = `
         </label>
         <input
           class="form-control mb-2"
+          id="color"
           name="color"
           placeholder="Enter a Color"
           type="text"
@@ -57,20 +58,7 @@ exports[`matches snapshot 1`] = `
   >
     <div
       class="row mx-auto grid gap-4"
-    >
-      <div
-        class="rounded shadow"
-        style="background-color: red; width: 100px; height: 100px;"
-      />
-      <div
-        class="rounded shadow"
-        style="background-color: green; width: 100px; height: 100px;"
-      />
-      <div
-        class="rounded shadow"
-        style="background-color: blue; width: 100px; height: 100px;"
-      />
-    </div>
+    />
   </div>
 </DocumentFragment>
 `;
