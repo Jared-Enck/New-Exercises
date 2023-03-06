@@ -9,7 +9,7 @@ function Todo({id, text, remove}) {
     }
     const newText = capsFirstLetters(text)
     return (
-        <li className='d-flex flex-grow list-group-item bg-light'>
+        <li className='d-flex list-group-item bg-light'>
             <span className='flex-grow-1'>
                 {newText}
             </span>
