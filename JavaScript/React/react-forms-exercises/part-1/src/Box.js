@@ -1,15 +1,30 @@
 import React from 'react'
 
-function Box({color,width,height}) {
+function Box({
+    id,
+    color,
+    width,
+    height,
+    remove
+}) {
     return (
-        <div 
-        style={{
-            backgroundColor: color,
-            width: width,
-            height: height
-        }}
-        className='rounded shadow'
-        ></div>
+        <div className='d-flex align-items-start'>
+            <div 
+                style={{
+                    backgroundColor: color,
+                    width: width,
+                    height: height
+                }}
+                className='rounded shadow'
+            >
+            </div>
+            <button 
+                onClick={() => remove(id)} 
+                className='btn btn-sm btn-danger ms-1 shadow'
+            >
+                X
+            </button>
+        </div>
     )
 }
 

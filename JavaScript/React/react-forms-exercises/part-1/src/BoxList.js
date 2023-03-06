@@ -10,21 +10,25 @@ function BoxList() {
         const newBox = {...box, id: uuid()}
         setBoxes(boxes => [...boxes, newBox])
     }
+    const removeBox = (id) => {
+        setBoxes(boxes.filter(box => box.id !== id))
+    } 
+
     return (
         <>
             <NewBoxForm addBox={addBox} />
 
-            <div className='row mx-auto'>
-                <div className='row mx-auto grid gap-4'>
-                    {boxes.map(box => 
-                        <Box 
-                            key={uuid()}
-                            color={box.color} 
-                            width={box.width} 
-                            height={box.height} 
-                        />
-                    )}
-                </div>
+            <div className='d-grid d-flex flex-row flex-wrap gap-4 ps-3'>
+                {boxes.map(box => 
+                    <Box 
+                        key={box.id}
+                        id={box.id}
+                        color={box.color} 
+                        width={box.width} 
+                        height={box.height} 
+                        remove={removeBox}
+                    />
+                )}
             </div>
         </>
     )

@@ -40,6 +40,7 @@ function NewBoxForm({addBox}) {
                         placeholder='Enter a Color'
                         className='form-control mb-2'
                         onChange={handleChange}
+                        value={formData.color}
                         autoFocus
                     />
                     <label htmlFor='width'>
@@ -51,6 +52,7 @@ function NewBoxForm({addBox}) {
                         placeholder='Enter width ex: 100px'
                         className='form-control mb-2'
                         onChange={handleChange}
+                        value={formData.width}
                     />
                     <label htmlFor='height'>
                         Height
@@ -61,6 +63,7 @@ function NewBoxForm({addBox}) {
                         placeholder='Enter height ex: 100px'
                         className='form-control mb-2'
                         onChange={handleChange}
+                        value={formData.height}
                     />
                     <button className='btn btn-medium btn-primary'>
                         Add Box!

@@ -3,7 +3,16 @@
 exports[`matches snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="rounded shadow"
-  />
+    class="d-flex align-items-start"
+  >
+    <div
+      class="rounded shadow"
+    />
+    <button
+      class="btn btn-sm btn-danger ms-1 shadow"
+    >
+      X
+    </button>
+  </div>
 </DocumentFragment>
 `;

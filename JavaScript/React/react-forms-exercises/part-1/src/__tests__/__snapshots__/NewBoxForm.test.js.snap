@@ -56,8 +56,5 @@ exports[`matches snapshot 1`] = `
       </form>
     </div>
   </div>
-  <div
-    class="d-grid d-flex flex-row flex-wrap gap-4 ps-3"
-  />
 </DocumentFragment>
 `;
