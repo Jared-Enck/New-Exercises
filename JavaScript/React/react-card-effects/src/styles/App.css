@@ -3,9 +3,16 @@
 }
 
 .draw-btn-wrapper {
-  height: 10vh;
-  align-items: center;
+  height: 15vh;
   justify-content: center;
+  margin-bottom: 2em;
+  display: grid;
+}
+
+button {
+  height: 2.5em;
+  align-self: center;
+  min-width: 100px;
 }
 
 body {

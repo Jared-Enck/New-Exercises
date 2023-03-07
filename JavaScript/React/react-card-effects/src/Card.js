@@ -1,9 +1,10 @@
 import React from "react";
+import './styles/Card.css'
 
-function Card(props) {
+function Card({img,val,suit}) {
     return (
-        <div>
-            
+        <div className="Card">
+            <img src={img} alt={`${val} of ${suit}`}></img>
         </div>
     )
 }

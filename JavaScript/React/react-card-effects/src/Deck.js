@@ -35,6 +35,18 @@ function Deck() {
         }
     }
 
+    async function shuffle(deck_id) {
+        try {
+            const res = await axios.get(
+                `${BASE_API}/${deck_id}/shuffle`
+            )
+            setCards([])
+            setDeck(res.data)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
     const cardsComponents = (
         cards.map(card => {
             // using code for the key prop here, as there is only one deck being used.
@@ -52,18 +64,28 @@ function Deck() {
     const drawBtn = (
         <button 
             onClick={() => drawCard(deck.deck_id)} 
-            className="col-2 btn btn-md btn-dark shadow"
+            className="btn btn-md btn-dark shadow"
         >
             Draw Card
+        </button>
+    )
+
+    const shuffleBtn = (
+        <button 
+            onClick={() => shuffle(deck.deck_id)} 
+            className="btn btn-md btn-dark shadow"
+        >
+            Shuffle
         </button>
     )
 
     return (
         <>
             <div className="row mx auto draw-btn-wrapper">
+                {shuffleBtn}
                 {deck.remaining > 0 ? drawBtn : null}
             </div>
-            <div className="row mx-auto d-flex flex-wrap">
+            <div className="row mx-auto justify-content-center">
                 {cards.length ? cardsComponents : null}
             </div>
         </>
