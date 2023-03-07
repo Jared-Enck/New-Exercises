@@ -1,3 +1,13 @@
 .App {
   text-align: center;
 }
+
+.draw-btn-wrapper {
+  height: 10vh;
+  align-items: center;
+  justify-content: center;
+}
+
+body {
+  background-color: green;
+}
