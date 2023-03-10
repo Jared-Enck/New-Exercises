@@ -1,5 +1,26 @@
 .VendingMachine {
-    background-image: url('../../public/vendingMachine.jpg');
-    object-fit: contain;
+    margin: 0%;
     height: 100vh;
+    background-image: url('../../public/vendingMachine.png');
+    background-position: center;
+    background-size:cover;
+}
+
+.VendingMachine .row {
+    height: 100%;
+}
+
+.VendingMachine-section {
+    padding: .7rem;
+    margin-top: 15%;
+    display: grid;
+    color: white;
+    background-color: rgba(128, 128, 128, 0.3);
+    height: 25%;
+    align-content: center;
+    font-size: 1.2rem;
+    text-shadow: 2px 1px black;
+}
+.VendingMachine-section a {
+    color: white;
 }

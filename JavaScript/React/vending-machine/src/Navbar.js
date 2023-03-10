@@ -1,20 +1,23 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
+import './styles/Navbar.css'
 
 function Navbar() {
     return (
-        <nav className='Navbar navbar navbar-dark bg-dark p-3'>
-            <NavLink exact to='/' className='navbar-brand text-light'>
+        <nav className='Navbar navbar navbar-dark bg-dark p-0'>
+            <Link exact to='/' className='navbar-brand text-light'>
                 Vending Machine
-            </NavLink>
-            <NavLink exact to='/soda' className='nav-link text-light'>
-                Soda
-            </NavLink>
-            <NavLink exact to='/chips' className='nav-link text-light'>
-                Chips
-            </NavLink>
-            <NavLink exact to='/candybar' className='nav-link text-light'>
-                Candybar
-            </NavLink>
+            </Link>
+            <div className='Navbar-links navbar navbar-right'>
+                <NavLink exact to='/soda' className='nav-link'>
+                    Soda
+                </NavLink>
+                <NavLink exact to='/chips' className='nav-link'>
+                    Chips
+                </NavLink>
+                <NavLink exact to='/candybar' className='nav-link'>
+                    Candybar
+                </NavLink>
+            </div>
         </nav>
     )
 }

@@ -1,4 +1,15 @@
 .Navbar {
-    position: absolute
-    
+    height: 5rem;
+}
+.navbar-brand {
+    padding-left: 2rem;
+}
+.Navbar-links {
+    width: 20%;
+    padding-right: 2rem;
+    color: rgb(199, 199, 199);
+}
+.Navbar-links a.active {
+    color: white;
+    text-decoration: underline;
 }
