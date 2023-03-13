@@ -4,20 +4,18 @@ import './styles/Navbar.css'
 function Navbar({names}) {
     return (
         <nav className='Navbar'>
-            <Link to='/dogs' className='Navbar-brand text-light'>
+            <Link to='/dogs' className='Navbar-brand'>
                 Daags
             </Link>
             <div className='Navbar-links'>
-                {names.map(name => {
-                    <NavLink 
+                {names.map(name => (
+                    <NavLink
                         key={name}
                         to={`/dogs/${name.toLowerCase()}`} 
                     >
-                        <span className='Navbar-link'>
-                            {name}
-                        </span>
+                        {name}
                     </NavLink>
-                    }
+                    )
                 )}
             </div>
         </nav>

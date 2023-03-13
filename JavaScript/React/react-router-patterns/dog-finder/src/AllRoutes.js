@@ -12,7 +12,7 @@ function AllRoutes({dogs}) {
             />
             <Route 
                 path="/dogs/:name" 
-                element={<DogDetails />}
+                element={<DogDetails dogs={dogs} />}
             />
         </Routes>
     )
