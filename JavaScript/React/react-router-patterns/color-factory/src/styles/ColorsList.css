@@ -1,0 +1,7 @@
+.ColorsList {
+    padding: 0;
+}
+.ColorsList li {
+    list-style: none;
+    padding: 0;
+}
