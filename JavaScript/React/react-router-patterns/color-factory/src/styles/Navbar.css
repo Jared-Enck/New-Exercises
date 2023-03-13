@@ -1,0 +1,29 @@
+.Navbar {
+    height: 5rem;
+    display: flex;
+    background-color: rgb(19, 19, 19);
+    justify-content: space-between;
+}
+.Navbar-brand {
+    padding-left: 2rem;
+    padding-bottom: .5rem;
+    font-size: 2rem;
+    color: white;
+    text-decoration: none;
+    align-self: center;
+}
+.Navbar-links {
+    padding-right: 2rem;
+    align-self: center;
+}
+
+.Navbar-links a {
+    color: rgb(199, 199, 199);
+    text-decoration: none;
+    padding: 1rem;
+}
+
+.Navbar-links a.active {
+    color: white;
+    text-decoration: underline;
+}
