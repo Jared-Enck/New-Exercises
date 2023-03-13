@@ -1,10 +1,13 @@
 import './styles/App.css';
-import Routes from './Routes';
+import Navbar from './Navbar';
+import AllRoutes from './AllRoutes';
+import dogs from './dogs';
 
 function App() {
   return (
     <div className="App">
-      <Routes />
+      <Navbar names={ dogs.map(d => d.name) } />
+      <AllRoutes dogs={dogs} />
     </div>
   );
 }

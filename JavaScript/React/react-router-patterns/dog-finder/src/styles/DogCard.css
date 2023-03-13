@@ -1,0 +1,21 @@
+.DogCard {
+    width: 200px;
+    margin: auto;
+    border: 1px solid gray;
+    border-radius: 7px;
+    box-shadow: 3px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.DogCard img {
+    width: 100%;
+    margin-bottom: -4px;
+    border-radius: 0px 0px 7px 7px;
+}
+
+h2 {
+    background-color: rgb(222, 222, 222);
+    color: steelblue;
+    margin: 0;
+    padding: 1.2rem;
+    border-radius: 7px 7px 0px 0px;
+}
