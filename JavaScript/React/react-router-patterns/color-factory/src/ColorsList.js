@@ -3,21 +3,24 @@ import { Link } from 'react-router-dom'
 
 function ColorsList({colors}) {
     return (
-        <ul className="ColorsList">
-            {
-                colors.map(color => 
-                    <li 
-                        key={color}
-                    >
-                        <Link
-                            to={`colors/${color}`}
+        <>
+            <p>Please select a color.</p>
+            <ul className="ColorsList">
+                {
+                    colors.map(color => 
+                        <li 
+                            key={color}
                         >
-                            {color}
-                        </Link>
-                    </li>
-                )
-            }
-        </ul>
+                            <Link
+                                to={`/colors/${color}`}
+                            >
+                                {color}
+                            </Link>
+                        </li>
+                    )
+                }
+            </ul>
+        </>
     )
 }
 

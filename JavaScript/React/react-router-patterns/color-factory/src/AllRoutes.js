@@ -1,21 +1,43 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom'
-import colors from './colors'
+import React, {useState} from 'react';
+import { Route, Routes, useNavigate, Navigate } from 'react-router-dom'
 import ColorsContainer from './ColorsContainer';
+import NewColorForm from './NewColorForm';
+import Color from './Color';
+import listColors from './colors'
 
 function AllRoutes() {
+    const navigate = useNavigate()
+    const [listOfColors, setListOfColors] = useState(listColors)
+
+    const addColor = (data) => {
+        setListOfColors([...listOfColors, data.color])
+    }
     return (
         <Routes>
             <Route 
-                path='/colors'
-                element={<ColorsContainer colors={colors} />}
+                path='*' 
+                element={<Navigate to='/colors' />}
             />
-            <Route 
-                path='/colors/new'
-            />
-            <Route 
-                path='/colors/:color'
-            />
+            <Route path='/colors'>
+                <Route 
+                    index element={
+                        <ColorsContainer colors={listOfColors} />
+                    }
+                />
+                <Route 
+                    path='new'
+                    element={
+                        <NewColorForm 
+                            add={addColor} 
+                            navigate={navigate} 
+                        />
+                    }
+                />
+                <Route 
+                    path=':color'
+                    element={<Color />}
+                />
+            </Route>
         </Routes>
     )
 }
