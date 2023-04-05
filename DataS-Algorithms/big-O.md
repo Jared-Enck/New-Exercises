@@ -2,6 +2,8 @@
 
 ### Step One  
 
+#### Simplify the following big O expressions as much as possible:  
+
 1. O(n + 10)  
 Simplified: O(n)
 2. O(100 * n)  
@@ -24,6 +26,8 @@ Simplified: O(1)
 Simplified: O(n^2)
 
 ### Step Two  
+
+#### Determine the time complexities for each of the following functions:  
 
 1. Example:  
 
@@ -113,6 +117,8 @@ Simplified: O(n^2)
     Time Complexity: O(n)
 
 ### Step Three  
+
+#### Answer the following questions:  
 
 1. True or false: n^2 + n is O(n^2).  
 True
