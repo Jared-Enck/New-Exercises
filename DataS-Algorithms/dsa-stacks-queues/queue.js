@@ -23,7 +23,6 @@ class Queue {
     const newNode = new Node(val)
     if (this.size === 0) {
       this.first = newNode
-      this.last = newNode
     } else {
       this.last.next = newNode
     }
