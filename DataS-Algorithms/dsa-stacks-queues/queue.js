@@ -24,8 +24,9 @@ class Queue {
     if (this.size === 0) {
       this.first = newNode
       this.last = newNode
+    } else {
+      this.last.next = newNode
     }
-    this.last.next = newNode
     this.last = newNode
     this.size ++
   }
