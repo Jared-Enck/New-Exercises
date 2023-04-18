@@ -21,5 +21,3 @@ function constructNote(str1,str2) {
   }
   return true
 }
-
-module.exports = constructNote
