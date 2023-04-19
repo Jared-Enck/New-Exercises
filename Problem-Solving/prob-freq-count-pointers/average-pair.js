@@ -4,7 +4,7 @@ function averagePair(arr, avg) {
   let right = arr.length -1
 
   while (left < right) {
-    let currAverage = arr[left] + arr[right] / 2
+    let currAverage = (arr[left] + arr[right]) / 2
     if (currAverage === avg) return true
     else if (currAverage > avg){
       right --
